@@ -17,8 +17,8 @@
 
             <button>Dashboard</button>
             <button onclick="window.location.href='transactions.html'">Transactions</button>
-            <button>Analysis</button>
-            <button>Reports</button>
+            <button onclick="window.location.href='analysis.html'">Analysis</button>
+            <button onclick="window.location.href='reports.html'">Reports</button>
             <button onclick="window.location.href='add-transaction.html'">Add Transaction</button>
 
         </div>
@@ -27,22 +27,22 @@
 
             <div class="card">
                 <h3>Total Spending</h3>
-                <p>₹0</p>
+                <p id="totalSpending">₹0</p>
             </div>
 
             <div class="card">
                 <h3>Total Transactions</h3>
-                <p>0</p>
+                <p id="totalTransactions">0</p>
             </div>
 
             <div class="card">
                 <h3>Highest Expense</h3>
-                <p>₹0</p>
+                <p id="highestExpense">₹0</p>
             </div>
 
             <div class="card">
                 <h3>Average Expense</h3>
-                <p>₹0</p>
+                <p id="averageExpense">₹0</p>
             </div>
 
         </div>
@@ -62,13 +62,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr>
-                        <td>2026-09-13</td>
-                        <td>Sample Transaction</td>
-                        <td>Shopping</td>
-                        <td>₹500</td>
-                    </tr>
+                <tbody id="recentTransactions">
                 </tbody>
 
             </table>

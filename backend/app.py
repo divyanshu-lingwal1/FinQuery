@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from services.analysis import (
     get_total_spending,
     get_spending_by_category,
@@ -13,6 +14,7 @@ from services.analysis import (
     get_monthly_spending
 )
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/")

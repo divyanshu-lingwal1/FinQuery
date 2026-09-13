@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FinQuery - Analysis</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Financial Analysis</h1>
+
+        <p>Analyze your spending and understand your financial habits.</p>
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <h3>Total Spending</h3>
+                <p id="analysisTotal">₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Highest Expense</h3>
+                <p id="analysisHighest">₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Average Expense</h3>
+                <p id="analysisAverage">₹0</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h2>Category-wise Spending</h2>
+
+    <div class="dashboard-cards" id="categoryAnalysis"></div>
+
+    <h2>Spending Chart</h2>
+
+    <canvas id="spendingChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
