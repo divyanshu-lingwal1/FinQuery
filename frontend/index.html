@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FinQuery-V2 - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>FinQuery-V2</h1>
+
+        <p>AI-Powered Financial Data Analysis System</p>
+
+        <div class="dashboard-menu">
+
+            <button>Dashboard</button>
+            <button onclick="window.location.href='transactions.html'">Transactions</button>
+            <button>Analysis</button>
+            <button>Reports</button>
+            <button onclick="window.location.href='add-transaction.html'">Add Transaction</button>
+
+        </div>
+
+        <div class="summary-cards">
+
+            <div class="card">
+                <h3>Total Spending</h3>
+                <p>₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Transactions</h3>
+                <p>0</p>
+            </div>
+
+            <div class="card">
+                <h3>Highest Expense</h3>
+                <p>₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Average Expense</h3>
+                <p>₹0</p>
+            </div>
+
+        </div>
+
+        <div class="recent-transactions">
+
+            <h2>Recent Transactions</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>2026-09-13</td>
+                        <td>Sample Transaction</td>
+                        <td>Shopping</td>
+                        <td>₹500</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
