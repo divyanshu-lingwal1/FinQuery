@@ -183,3 +183,718 @@ body {
 .transaction-table th {
     font-weight: bold;
 }
+
+/* =========================================
+   NEW FINQUERY-V2 DASHBOARD
+   ========================================= */
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f7fb;
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background-color: #111827;
+    color: white;
+    padding: 25px 18px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Logo */
+
+.logo-section {
+    padding: 5px 10px 25px;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    background-color: #2563eb;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    margin-bottom: 12px;
+}
+
+.logo-section h1 {
+    font-size: 21px;
+    margin: 0 0 8px;
+}
+
+.logo-section p {
+    font-size: 11px;
+    line-height: 1.5;
+    color: #9ca3af;
+    margin: 0;
+}
+
+/* Menu title */
+
+.menu-title {
+    font-size: 10px;
+    color: #6b7280;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+/* Sidebar menu */
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    color: #d1d5db;
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+.menu-item span {
+    width: 20px;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background-color: #1f2937;
+    color: white;
+}
+
+.menu-item.active {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* Bottom section */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+/* Budget */
+
+.budget-box {
+    background-color: #1f2937;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.budget-box small {
+    color: #9ca3af;
+    font-size: 9px;
+}
+
+.budget-box h3 {
+    margin: 8px 0 2px;
+    font-size: 22px;
+}
+
+.budget-box p {
+    margin: 0 0 12px;
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.budget-bar {
+    width: 100%;
+    height: 6px;
+    background-color: #374151;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.budget-progress {
+    width: 65%;
+    height: 100%;
+    background-color: #2563eb;
+}
+
+/* AI Insight */
+
+.insight-box {
+    background-color: #172554;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.insight-box small {
+    color: #93c5fd;
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.insight-box p {
+    color: #dbeafe;
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 8px 0 0;
+}
+
+/* Logout */
+
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 11px 14px;
+
+    color: #9ca3af;
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+}
+
+.logout:hover {
+    background-color: #1f2937;
+    color: white;
+}
+
+/* =========================================
+   MAIN DASHBOARD CONTENT
+   ========================================= */
+
+.main-content {
+    flex: 1;
+    padding: 35px;
+    box-sizing: border-box;
+}
+
+/* Top Header */
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.top-header h2 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    color: #111827;
+}
+
+.top-header p {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* User Section */
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-section > span {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #e5e7eb;
+    border-radius: 50%;
+}
+
+.user-section strong {
+    display: block;
+    font-size: 13px;
+    color: #111827;
+}
+
+.user-section small {
+    display: block;
+    margin-top: 3px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+/* =========================================
+   SUMMARY CARDS
+   ========================================= */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.summary-card {
+    background-color: white;
+    padding: 22px;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    box-sizing: border-box;
+}
+
+.summary-card p {
+    margin: 0 0 12px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.summary-card h3 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    color: #111827;
+}
+
+.summary-card span {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* =========================================
+   MONTHLY SPENDING
+   ========================================= */
+
+.monthly-section {
+    background-color: white;
+    margin-top: 22px;
+    padding: 22px;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    margin: 0 0 5px;
+    font-size: 17px;
+    color: #111827;
+}
+
+.section-header p {
+    margin: 0;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.section-header select {
+    padding: 8px 12px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+
+    background-color: white;
+    color: #374151;
+
+    font-size: 11px;
+}
+
+.chart-placeholder {
+    height: 250px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f9fafb;
+    border-radius: 8px;
+
+    color: #9ca3af;
+    font-size: 13px;
+} 
+
+/* =========================================
+   SPENDING CHART
+   ========================================= */
+
+.spending-chart {
+    height: 250px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    gap: 12px;
+
+    padding: 20px 10px 5px;
+    box-sizing: border-box;
+}
+
+.chart-bar {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    flex: 1;
+    gap: 8px;
+}
+
+.chart-bar span {
+    order: 2;
+
+    font-size: 10px;
+    color: #6b7280;
+}
+
+.bar {
+    width: 100%;
+    max-width: 32px;
+    height: 190px;
+
+    display: flex;
+    align-items: flex-end;
+
+    background-color: #eef2ff;
+
+    border-radius: 6px 6px 0 0;
+}
+
+.bar-fill {
+    width: 100%;
+
+    background-color: #2563eb;
+
+    border-radius: 6px 6px 0 0;
+}
+
+/* =========================================
+   SPENDING BY CATEGORY
+   ========================================= */
+
+.category-section {
+    background-color: white;
+
+    margin-top: 22px;
+
+    padding: 22px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.category-list {
+    margin-top: 10px;
+}
+
+.category-item {
+    margin-bottom: 18px;
+}
+
+.category-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 7px;
+}
+
+.category-info span {
+    font-size: 12px;
+    color: #374151;
+}
+
+.category-info strong {
+    font-size: 12px;
+    color: #111827;
+}
+
+.category-bar {
+    width: 100%;
+    height: 7px;
+
+    background-color: #eef2f7;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.category-progress {
+    height: 100%;
+
+    background-color: #2563eb;
+
+    border-radius: 10px;
+}
+
+/* =========================================
+   RECENT TRANSACTIONS
+   ========================================= */
+
+.recent-section {
+    background-color: white;
+
+    margin-top: 22px;
+
+    padding: 22px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    margin-bottom: 30px;
+}
+
+.view-all {
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+.dashboard-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 15px;
+}
+
+.dashboard-table th {
+    padding: 12px;
+
+    text-align: left;
+
+    font-size: 11px;
+
+    color: #6b7280;
+
+    background-color: #f9fafb;
+}
+
+.dashboard-table td {
+    padding: 14px 12px;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    font-size: 12px;
+
+    color: #374151;
+}
+
+.dashboard-table tr:last-child td {
+    border-bottom: none;
+}
+
+.dashboard-table td:last-child {
+    font-weight: bold;
+
+    color: #111827;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* SIDE-BY-SIDE CHARTS */
+
+.charts-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 22px;
+    margin-top: 22px;
+}
+
+.charts-row .monthly-section,
+.charts-row .category-section {
+    margin-top: 0;
+}
+
+@media (max-width: 1000px) {
+
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================================
+   DYNAMIC DASHBOARD LAYOUT
+   ========================================= */
+
+.main-content {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Summary cards automatically adjust */
+.summary-grid {
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+    );
+}
+
+/* Monthly + Category sections */
+.charts-row {
+    grid-template-columns:
+        minmax(0, 2fr)
+        minmax(280px, 1fr);
+}
+
+/* Prevent content from forcing boxes wider */
+.monthly-section,
+.category-section,
+.recent-section {
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Charts use the available box size */
+.spending-chart,
+.category-chart {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Monthly chart */
+.spending-chart {
+    position: relative;
+    height: 280px;
+}
+
+/* Category chart */
+.category-chart {
+    position: relative;
+    height: 280px;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content {
+        padding: 25px;
+    }
+
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .menu-item {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .main-content {
+        padding: 18px;
+    }
+
+    .top-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+
+    .spending-chart,
+    .category-chart {
+        height: 250px;
+    }
+
+    .recent-section {
+        overflow-x: auto;
+    }
+
+    .dashboard-table {
+        min-width: 600px;
+    }
+
+}

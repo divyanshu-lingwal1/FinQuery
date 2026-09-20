@@ -1,4 +1,5 @@
-from flask import Flask, request
+from datetime import date
+from flask import Flask, request, session
 from flask_cors import CORS
 from services.analysis import (
     get_total_spending,
@@ -8,13 +9,23 @@ from services.analysis import (
     get_all_transactions,
     add_transaction,
     delete_transaction,
+    register_user,
     update_transaction,
     search_transactions,
     get_spending_by_date_range,
-    get_monthly_spending
+    get_monthly_spending,
+    login_user,
+    get_total_transactions
 )
 app = Flask(__name__)
-CORS(app)
+
+app.secret_key = "finquery-secret-key"
+
+CORS(
+    app,
+    supports_credentials=True,
+    origins=["http://127.0.0.1:5500"]
+)
 
 
 @app.route("/")
@@ -24,13 +35,17 @@ def home():
 
 @app.route("/api/summary")
 def summary():
-    total = get_total_spending()
-    categories = get_spending_by_category()
-    highest = get_highest_spending_category()
-    average = get_average_transaction()
+    user_id = session["user_id"]
 
+    total = get_total_spending(user_id)
+    total_transactions = get_total_transactions(user_id)
+    categories = get_spending_by_category(user_id)
+    highest = get_highest_spending_category(user_id)
+    average = get_average_transaction(user_id)
+    
     return {
         "total_spending": float(total),
+        "total_transactions": total_transactions,
         "highest_category": highest[0],
         "highest_category_amount": float(highest[1]),
         "average_transaction": float(average),
@@ -44,7 +59,9 @@ def summary():
     }
 @app.route("/api/transactions")
 def transactions():
-    results = get_all_transactions()
+    user_id = session["user_id"]
+
+    results = get_all_transactions(user_id)
 
     transaction_data = []
 
@@ -70,7 +87,9 @@ def create_transaction():
     category = data["category"]
     amount = data["amount"]
 
-    add_transaction(date, description, category, amount)
+    user_id = session["user_id"]
+
+    add_transaction(date, description, category, amount, user_id)
 
     return {
         "message": "Transaction added successfully!"
@@ -144,7 +163,9 @@ def date_range_analysis():
 
 @app.route("/api/transactions/monthly")
 def monthly_spending():
-    results = get_monthly_spending()
+    user_id = session["user_id"]
+
+    results = get_monthly_spending(user_id)
 
     monthly_data = []
 
@@ -158,6 +179,61 @@ def monthly_spending():
     return {
         "monthly_spending": monthly_data
     }
+
+@app.route("/api/register", methods=["POST"])
+def register():
+    data = request.get_json()
+
+    name = data["name"]
+    email = data["email"]
+    password = data["password"]
+
+    register_user(name, email, password)
+
+    return {
+        "message": "User registered successfully!"
+    }
+
+@app.route("/api/login", methods=["POST"])
+def login():
+    data = request.get_json()
+
+    email = data["email"]
+    password = data["password"]
+
+    user = login_user(email, password)
+
+    if user:
+        session["user_id"] = user[0]
+        print("Logged in user ID:", session["user_id"])
+
+        return {
+            "success": True,
+            "message": "Login successful!",
+            "user": {
+                "id": user[0],
+                "name": user[1],
+                "email": user[2]
+            }
+        }
+
+    return {
+        "success": False,
+        "message": "Invalid email or password"
+    }, 401
+
+@app.route("/api/me")
+def current_user():
+    if "user_id" not in session:
+        return {
+            "logged_in": False
+        }, 401
+
+    return {
+        "logged_in": True,
+        "user_id": session["user_id"]
+    }
+
 
 if __name__ == "__main__":
     app.run(debug=True)

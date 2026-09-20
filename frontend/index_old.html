@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FinQuery-V2 - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>FinQuery-V2</h1>
+
+        <p>AI-Powered Financial Data Analysis System - FinQuery</p>
+
+        <div class="dashboard-menu">
+
+            <button>Dashboard</button>
+            <button onclick="window.location.href='transactions.html'">Transactions</button>
+            <button onclick="window.location.href='analysis.html'">Analysis</button>
+            <button onclick="window.location.href='reports.html'">Reports</button>
+            <button onclick="window.location.href='add-transaction.html'">Add Transaction</button>
+
+        </div>
+
+        <div class="summary-cards">
+
+            <div class="card">
+                <h3>Total Spending</h3>
+                <p id="totalSpending">₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Transactions</h3>
+                <p id="totalTransactions">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Highest Expense</h3>
+                <p id="highestExpense">₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Average Expense</h3>
+                <p id="averageExpense">₹0</p>
+            </div>
+
+        </div>
+
+        <div class="recent-transactions">
+
+            <h2>Recent Transactions</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+
+                <tbody id="recentTransactions">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

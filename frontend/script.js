@@ -171,6 +171,7 @@ if (transactionForm) {
 
         fetch("http://127.0.0.1:5000/api/transactions", {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -199,7 +200,9 @@ const transactionsList = document.getElementById("transactionsList");
 
 if (transactionsList) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -461,4 +464,87 @@ if (exportReport) {
 
     });
 
+}
+
+const registerForm = document.getElementById("registerForm");
+
+if (registerForm) {
+    registerForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const response = await fetch("http://127.0.0.1:5000/api/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        });
+
+        const result = await response.json();
+
+        alert(result.message);
+    });
+}
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+    loginForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const response = await fetch("http://127.0.0.1:5000/api/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            window.location.href = "analysis.html";
+        } else {
+            alert(result.message);
+        }
+    });
+}
+
+const currentPage = window.location.pathname;
+
+if (
+    currentPage.includes("analysis.html") ||
+    currentPage.includes("transactions.html") ||
+    currentPage.includes("add-transaction.html")
+) {
+
+    fetch("http://127.0.0.1:5000/api/me", {
+        credentials: "include"
+    })
+    .then(response => {
+        if (!response.ok) {
+            window.location.href = "login.html";
+        }
+        return response.json();
+    })
+    .then(result => {
+        if (!result.logged_in) {
+            window.location.href = "login.html";
+        }
+    });
 }

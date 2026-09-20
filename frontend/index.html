@@ -1,77 +1,752 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>FinQuery-V2 - Dashboard</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
 
 <body>
 
-    <div class="dashboard">
+    <div class="dashboard-container">
 
-        <h1>FinQuery-V2</h1>
 
-        <p>AI-Powered Financial Data Analysis System - FinQuery</p>
+        <!-- =========================================
+             SIDEBAR
+             ========================================= -->
 
-        <div class="dashboard-menu">
+        <aside class="sidebar">
 
-            <button>Dashboard</button>
-            <button onclick="window.location.href='transactions.html'">Transactions</button>
-            <button onclick="window.location.href='analysis.html'">Analysis</button>
-            <button onclick="window.location.href='reports.html'">Reports</button>
-            <button onclick="window.location.href='add-transaction.html'">Add Transaction</button>
+            <div class="logo-section">
 
-        </div>
+                <div class="logo-icon">↗</div>
 
-        <div class="summary-cards">
+                <h1>FinQuery-V2</h1>
 
-            <div class="card">
-                <h3>Total Spending</h3>
-                <p id="totalSpending">₹0</p>
+                <p>
+                    AI-Powered Financial Data Analysis System
+                </p>
+
             </div>
 
-            <div class="card">
-                <h3>Total Transactions</h3>
-                <p id="totalTransactions">0</p>
+
+            <div class="menu-title">
+                MAIN MENU
             </div>
 
-            <div class="card">
-                <h3>Highest Expense</h3>
-                <p id="highestExpense">₹0</p>
+
+            <nav class="sidebar-menu">
+
+                <a href="index.html" class="menu-item active">
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+                <a href="transactions.html" class="menu-item">
+                    <span>▣</span>
+                    Transactions
+                </a>
+
+                <a href="analysis.html" class="menu-item">
+                    <span>◔</span>
+                    Analysis
+                </a>
+
+                <a href="reports.html" class="menu-item">
+                    <span>▤</span>
+                    Reports
+                </a>
+
+                <a href="add-transaction.html" class="menu-item">
+                    <span>⊕</span>
+                    Add Transaction
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+
+                <!-- Monthly Budget -->
+
+                <div class="budget-box">
+
+                    <small>MONTHLY BUDGET</small>
+
+                    <h3>₹9,699</h3>
+
+                    <p>of ₹15,000</p>
+
+                    <div class="budget-bar">
+
+                        <div class="budget-progress"></div>
+
+                    </div>
+
+                    <small>65% used this month</small>
+
+                </div>
+
+
+                <!-- AI Insight -->
+
+                <div class="insight-box">
+
+                    <small>✧ AI INSIGHT</small>
+
+                    <p>
+                        Food spending is up 18% this month.
+                    </p>
+
+                </div>
+
+
+                <!-- Logout -->
+
+                <a href="login.html" class="logout">
+
+                    <span>↪</span>
+
+                    Logout
+
+                </a>
+
             </div>
 
-            <div class="card">
-                <h3>Average Expense</h3>
-                <p id="averageExpense">₹0</p>
+        </aside>
+
+
+
+        <!-- =========================================
+             MAIN CONTENT
+             ========================================= -->
+
+        <main class="main-content">
+
+
+            <!-- Header -->
+
+            <div class="top-header">
+
+                <div>
+
+                    <h2>Dashboard</h2>
+
+                    <p>
+                        Welcome back! Here's your financial overview.
+                    </p>
+
+                </div>
+
+
+                <div class="user-section">
+
+                    <span>👤</span>
+
+                    <div>
+
+                        <strong>User</strong>
+
+                        <small>Personal Account</small>
+
+                    </div>
+
+                </div>
+
             </div>
 
-        </div>
 
-        <div class="recent-transactions">
 
-            <h2>Recent Transactions</h2>
+            <!-- =========================================
+                 SUMMARY CARDS
+                 ========================================= -->
 
-            <table>
+            <div class="summary-grid">
 
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
+                <div class="summary-card">
 
-                <tbody id="recentTransactions">
-                </tbody>
+                    <p>Total Spending</p>
 
-            </table>
+                    <h3 id="totalSpending">₹0</h3>
 
-        </div>
+                    <span>This month</span>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <p>Total Transactions</p>
+
+                    <h3 id="totalTransactions">0</h3>
+
+                    <span>This month</span>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <p>Highest Expense</p>
+
+                    <h3 id="highestExpense">₹0</h3>
+
+                    <span id="highestCategory">No data</span>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <p>Average Expense</p>
+
+                    <h3 id="averageExpense">₹0</h3>
+
+                    <span>Per transaction</span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 CHARTS ROW
+                 Monthly Spending + Spending by Category
+                 ========================================= -->
+
+            <div class="charts-row">
+
+
+                <!-- =====================================
+                     MONTHLY SPENDING
+                     ===================================== -->
+
+                <div class="monthly-section">
+
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h3>Monthly Spending</h3>
+
+                            <p>
+                                Your spending trend over time
+                            </p>
+
+                        </div>
+
+
+                        <!-- Chart Type Selector -->
+
+                        <select id="monthlyChartType">
+
+                            <option value="line">
+                                Line
+                            </option>
+
+                            <option value="bar">
+                                Bar
+                            </option>
+
+                            <option value="area">
+                                Area
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Monthly Chart -->
+
+                    <div class="spending-chart">
+
+                        <canvas id="monthlySpendingChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     SPENDING BY CATEGORY
+                     ===================================== -->
+
+                <div class="category-section">
+
+
+                    <div class="section-header">
+
+                        <div>
+                            <h3>Spending by Category</h3>
+
+                            <p>
+                                Where your money is going
+                            </p>
+                        </div>
+
+                        <select id="categoryChartType">
+
+                            <option value="doughnut">
+                                Donut
+                            </option>
+
+                            <option value="pie">
+                                Pie
+                            </option>
+
+                            <option value="bar">
+                                Bar
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Category Chart -->
+
+                    <div class="category-chart">
+
+                        <canvas id="categorySpendingChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- END CHARTS ROW -->
+
+
+
+            <!-- =========================================
+                 RECENT TRANSACTIONS
+                 ========================================= -->
+
+            <div class="recent-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>Recent Transactions</h3>
+
+                        <p>
+                            Your latest financial activities
+                        </p>
+
+                    </div>
+
+
+                    <a href="transactions.html" class="view-all">
+                        View All
+                    </a>
+
+                </div>
+
+
+
+                <table class="dashboard-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Date</th>
+
+                            <th>Description</th>
+
+                            <th>Category</th>
+
+                            <th>Amount</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentTransactionsList">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </main>
 
     </div>
 
-    <script src="script.js"></script>
+
+
+    <!-- =========================================
+         MONTHLY SPENDING CHART JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+// =========================================
+// MONTHLY SPENDING CHART
+// =========================================
+
+        const monthlyChart =
+            document.getElementById("monthlySpendingChart");
+
+        const monthlyLabels = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+        ];
+
+        const monthlyData = [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ];
+
+        fetch("http://127.0.0.1:5000/api/transactions/monthly", {
+            credentials: "include"
+        })
+        .then(response => response.json())
+        .then(result => {
+
+            result.monthly_spending.forEach(item => {
+
+                const monthIndex = item.month - 1;
+
+                monthlyData[monthIndex] =
+                    item.total_spending;
+
+            });
+
+            const monthlyChartData = {
+
+                labels: monthlyLabels,
+
+                datasets: [{
+
+                    label: "Monthly Spending",
+
+                    data: monthlyData,
+
+                    borderWidth: 3,
+
+                    tension: 0.4,
+
+                    fill: false
+
+                }]
+
+            };
+
+
+            let monthlyChartObject = new Chart(
+
+                monthlyChart,
+
+                {
+
+                    type: "line",
+
+                    data: monthlyChartData,
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+
+                                display: false
+
+                            }
+
+                        },
+
+                        scales: {
+
+                            y: {
+
+                                beginAtZero: true
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            );
+
+
+            // Chart Type Selector
+
+            const chartTypeSelector =
+                document.getElementById("monthlyChartType");
+
+
+            chartTypeSelector.addEventListener(
+                "change",
+                function () {
+
+                    let selectedType = this.value;
+
+
+                    if (selectedType === "area") {
+
+                        monthlyChartObject.config.type =
+                            "line";
+
+                        monthlyChartObject.data.datasets[0].fill =
+                            true;
+
+                    }
+
+                    else {
+
+                        monthlyChartObject.config.type =
+                            selectedType;
+
+                        monthlyChartObject.data.datasets[0].fill =
+                            false;
+
+                    }
+
+
+                    monthlyChartObject.update();
+
+                }
+            );
+
+        })
+        .catch(error => {
+
+            console.log(
+                "Error loading monthly spending:",
+                error
+            );
+
+        });
+
+        // =========================================
+        // CATEGORY SPENDING CHART
+        // =========================================
+
+        const categoryChart =
+            document.getElementById("categorySpendingChart");
+
+
+        fetch("http://127.0.0.1:5000/api/summary", {
+            credentials: "include"
+        })
+        .then(response => response.json())
+        .then(result => {
+
+            const categories =
+                result.spending_by_category;
+
+            const categoryLabels =
+                categories.map(item => item.category);
+
+            const categoryAmounts =
+                categories.map(item => item.amount);
+
+
+            const categoryChartData = {
+
+                labels: categoryLabels,
+
+                datasets: [{
+
+                    data: categoryAmounts,
+
+                    borderWidth: 2
+
+                }]
+
+            };
+
+
+            let categoryChartObject = new Chart(
+
+                categoryChart,
+
+                {
+
+                    type: "doughnut",
+
+                    data: categoryChartData,
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+
+                                position: "bottom"
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            );
+
+
+            // Category Chart Type Selector
+
+            const categoryChartSelector =
+                document.getElementById("categoryChartType");
+
+
+            categoryChartSelector.addEventListener(
+                "change",
+                function () {
+
+                    const selectedType =
+                        this.value;
+
+                    categoryChartObject.config.type =
+                        selectedType;
+
+                    categoryChartObject.update();
+
+                }
+            );
+
+        })
+        .catch(error => {
+
+            console.log(
+                "Error loading category spending:",
+                error
+            );
+
+        });
+
+        // =========================================
+        // SUMMARY CARDS
+        // =========================================
+
+        fetch("http://127.0.0.1:5000/api/summary", {
+            credentials: "include"
+        })
+        .then(response => response.json())
+        .then(result => {
+
+            document.getElementById("totalSpending").textContent =
+                "₹" + result.total_spending;
+
+            document.getElementById("totalTransactions").textContent =
+                result.total_transactions;
+
+            document.getElementById("highestExpense").textContent =
+                "₹" + result.highest_category_amount;
+
+            document.getElementById("highestCategory").textContent =
+                result.highest_category;
+
+            document.getElementById("averageExpense").textContent =
+                "₹" + result.average_transaction;
+
+        })
+        .catch(error => {
+
+            console.log(
+                "Error loading summary:",
+                error
+            );
+
+        });
+
+        // =========================================
+        // RECENT TRANSACTIONS
+        // =========================================
+
+        const recentTransactionsList =
+            document.getElementById("recentTransactionsList");
+
+        if (recentTransactionsList) {
+
+            fetch("http://127.0.0.1:5000/api/transactions", {
+                credentials: "include"
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                const transactions = data.transactions.slice(-5).reverse();
+
+                transactions.forEach(transaction => {
+
+                    const row = document.createElement("tr");
+
+                    row.innerHTML = `
+                        <td>${transaction.date}</td>
+                        <td>${transaction.description}</td>
+                        <td>${transaction.category}</td>
+                        <td>₹${transaction.amount}</td>
+                    `;
+
+                    recentTransactionsList.appendChild(row);
+
+                });
+
+            })
+            .catch(error => {
+
+                console.log(
+                    "Error loading recent transactions:",
+                    error
+                );
+
+            });
+
+        }
+    </script>
+
 
 </body>
+
 </html>
