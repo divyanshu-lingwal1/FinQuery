@@ -266,3 +266,25 @@ def get_total_transactions(user_id):
     db.close()
 
     return total_transactions
+
+def import_transactions(transactions, user_id):
+    db = get_connection()
+    cursor = db.cursor()
+
+    for transaction in transactions:
+        cursor.execute("""
+            INSERT INTO transactions
+            (date, description, category, amount, user_id)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (
+            transaction["date"],
+            transaction["description"],
+            transaction["category"],
+            transaction["amount"],
+            user_id
+        ))
+
+    db.commit()
+
+    cursor.close()
+    db.close()

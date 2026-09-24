@@ -1,6 +1,9 @@
 from datetime import date
 from flask import Flask, request, session
 from flask_cors import CORS
+from importers.pdf_importer import read_pdf_file
+from importers.csv_importer import read_csv_file
+from services.analysis import import_transactions
 from services.analysis import (
     get_total_spending,
     get_spending_by_category,
@@ -20,6 +23,81 @@ from services.analysis import (
 app = Flask(__name__)
 
 app.secret_key = "finquery-secret-key"
+
+@app.route("/api/import/csv", methods=["POST"])
+def import_csv():
+    if "user_id" not in session:
+        return {"success": False, "message": "Please login first"}, 401
+
+    if "file" not in request.files:
+        return {"success": False, "message": "No file uploaded"}, 400
+
+    file = request.files["file"]
+
+    if file.filename == "":
+        return {"success": False, "message": "No file selected"}, 400
+
+    if not file.filename.lower().endswith(".csv"):
+        return {"success": False, "message": "Only CSV files are allowed"}, 400
+
+    file_path = "temp_import.csv"
+    file.save(file_path)
+
+    try:
+        transactions = read_csv_file(file_path)
+
+        import_transactions(
+            transactions,
+            session["user_id"]
+        )
+
+        return {
+            "success": True,
+            "message": "CSV transactions imported successfully!",
+            "count": len(transactions)
+        }
+
+    except ValueError as error:
+        return {
+            "success": False,
+            "message": str(error)
+        }, 400
+
+@app.route("/api/import/pdf", methods=["POST"])
+def import_pdf():
+    if "user_id" not in session:
+        return {"success": False, "message": "Please login first"}, 401
+
+    if "file" not in request.files:
+        return {"success": False, "message": "No file uploaded"}, 400
+
+    file = request.files["file"]
+
+    if file.filename == "":
+        return {"success": False, "message": "No file selected"}, 400
+
+    if not file.filename.lower().endswith(".pdf"):
+        return {"success": False, "message": "Only PDF files are allowed"}, 400
+
+    if not file.filename.lower().endswith(".pdf"):
+        return {"success": False, "message": "Only PDF files are allowed"}, 400
+
+    file_path = "temp_import.pdf"
+    file.save(file_path)
+
+    try:
+        text = read_pdf_file(file_path)
+
+        return {
+            "success": True,
+            "text": text
+        }
+
+    except Exception as error:
+        return {
+            "success": False,
+            "message": str(error)
+        }, 400
 
 CORS(
     app,
