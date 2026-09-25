@@ -3,6 +3,7 @@ from flask import Flask, request, session
 from flask_cors import CORS
 from importers.pdf_importer import read_pdf_file
 from importers.csv_importer import read_csv_file
+from importers.ocr_importer import read_image_file
 from services.analysis import import_transactions
 from services.analysis import (
     get_total_spending,
@@ -87,6 +88,45 @@ def import_pdf():
 
     try:
         text = read_pdf_file(file_path)
+
+        return {
+            "success": True,
+            "text": text
+        }
+
+    except Exception as error:
+        return {
+            "success": False,
+            "message": str(error)
+        }, 400
+
+@app.route("/api/import/image", methods=["POST"])
+def import_image():
+    if "user_id" not in session:
+        return {"success": False, "message": "Please login first"}, 401
+
+    if "file" not in request.files:
+        return {"success": False, "message": "No file uploaded"}, 400
+
+    file = request.files["file"]
+
+    if file.filename == "":
+        return {"success": False, "message": "No file selected"}, 400
+
+    allowed_extensions = [".png", ".jpg", ".jpeg"]
+
+    if not any(file.filename.lower().endswith(ext) for ext in allowed_extensions):
+        return {
+            "success": False,
+            "message": "Only PNG, JPG and JPEG files are allowed"
+        }, 400
+
+    file_path = "temp_import_image"
+
+    file.save(file_path)
+
+    try:
+        text = read_image_file(file_path)
 
         return {
             "success": True,
