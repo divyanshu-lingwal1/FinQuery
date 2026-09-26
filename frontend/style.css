@@ -1540,3 +1540,411 @@ body {
 .main-content {
     overflow-x: hidden;
 }
+
+.transaction-search {
+    margin-top: 20px;
+}
+
+.transaction-search input {
+    width: 100%;
+    max-width: 420px;
+    padding: 11px 14px;
+    border: 1px solid #d6e2dc;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #394b43;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.transaction-search input:focus {
+    outline: none;
+    border-color: #2e7d5b;
+    box-shadow: 0 0 0 3px rgba(46, 125, 91, 0.08);
+}
+
+.transaction-search input::placeholder {
+    color: #8a9891;
+}
+
+.transaction-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+    border: 1px solid #e2ebe6;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transaction-table th {
+    padding: 13px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: #315646;
+    background: #eef7f2;
+    border-bottom: 1px solid #dce9e2;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.transaction-table td {
+    padding: 14px;
+    font-size: 12px;
+    color: #394b43;
+    border-bottom: 1px solid #edf1ef;
+}
+
+.transaction-table tr:hover td {
+    background: #f7faf8;
+}
+
+.transaction-table tr:last-child td {
+    border-bottom: none;
+}
+
+.transaction-table td:last-child {
+    color: #12372a;
+    font-weight: 600;
+}
+
+.transaction-search input {
+    height: 42px;
+    box-shadow: 0 2px 6px rgba(18, 55, 42, 0.04);
+}
+
+.transaction-search input:hover {
+    border-color: #b8cec2;
+}
+
+.back-dashboard {
+    margin-top: 18px;
+}
+
+.back-dashboard a {
+    color: #2e7d5b;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.back-dashboard a:hover {
+    color: #1f6245;
+}
+
+.transaction-table-container {
+    box-shadow: 0 2px 8px rgba(18, 55, 42, 0.05);
+}
+
+.recent-section .section-header h3 {
+    color: #12372a;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.recent-section .section-header p {
+    color: #74827c;
+    font-size: 12px;
+    margin-top: 5px;
+    line-height: 1.5;
+}
+
+.transaction-table td {
+    padding: 15px 14px;
+    line-height: 1.5;
+}
+
+.transaction-table th {
+    padding: 14px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.transaction-table td:last-child {
+    color: #12372a;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.transaction-table th,
+.transaction-table td {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.transaction-table {
+    min-width: 650px;
+}
+
+.transaction-search {
+    margin-bottom: 4px;
+}
+
+.transaction-table-container {
+    border-color: #d8e5de;
+}
+
+.transaction-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.transaction-table tbody tr:hover {
+    background-color: #f3f8f5;
+}
+
+.transaction-table td:first-child {
+    color: #6f7f77;
+    white-space: nowrap;
+}
+
+.transaction-table td:nth-child(2) {
+    color: #31443b;
+    font-weight: 500;
+}
+
+.transaction-table td:nth-child(3) {
+    color: #4f6f60;
+    font-weight: 500;
+}
+
+.transaction-table {
+    font-size: 13px;
+}
+
+.transaction-table td,
+.transaction-table th {
+    line-height: 1.4;
+}
+
+.transaction-search input:focus {
+    border-color: #2e7d5b;
+    box-shadow: 0 0 0 3px rgba(46, 125, 91, 0.10);
+}
+
+.transaction-search input::placeholder {
+    color: #8a9891;
+    opacity: 1;
+}
+
+.transaction-search input {
+    max-width: 460px;
+}
+
+.main-content .top-header h2 {
+    font-size: 24px;
+    font-weight: 650;
+    letter-spacing: -0.4px;
+    color: #12372a;
+}
+
+.main-content .top-header p {
+    color: #74827c;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 6px;
+}
+
+.back-dashboard a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0;
+}
+
+.recent-section {
+    padding: 24px;
+}
+
+.transaction-table td:last-child {
+    text-align: right;
+}
+
+.transaction-table th {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.transaction-table td {
+    vertical-align: middle;
+}
+
+.transaction-table tbody tr {
+    height: 52px;
+}
+
+.transaction-table-container {
+    border-radius: 12px;
+}
+
+.transaction-table th {
+    color: #254d3b;
+    font-weight: 700;
+}
+
+.transaction-table td:last-child {
+    font-size: 13px;
+}
+
+.recent-section {
+    margin-bottom: 10px;
+}
+
+.back-dashboard {
+    padding-bottom: 10px;
+}
+
+.transaction-search {
+    margin-bottom: 8px;
+}
+
+.transaction-search input {
+    height: 44px;
+}
+
+.transaction-search input {
+    font-size: 13px;
+    color: #31443b;
+}
+
+.transaction-search input {
+    border: 1px solid #cdded5;
+}
+
+.transaction-search input {
+    background-color: #ffffff;
+}
+
+.transaction-search input:focus {
+    border-color: #2e7d5b;
+    box-shadow: 0 0 0 3px rgba(46, 125, 91, 0.10);
+}
+
+.transaction-search input:hover {
+    border-color: #b8cec2;
+}
+
+.transaction-search input {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transaction-search input::placeholder {
+    color: #8a9891;
+    opacity: 1;
+}
+
+.transaction-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.transaction-table tbody tr:hover {
+    background-color: #f3f8f5;
+}
+
+.transaction-table td {
+    border-bottom: 1px solid #e5ece8;
+}
+
+.transaction-table tr:last-child td {
+    border-bottom: none;
+}
+
+.transaction-table tbody {
+    background-color: #ffffff;
+}
+
+.transaction-table {
+    table-layout: fixed;
+}
+
+.back-dashboard a:hover {
+    color: #174f39;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.recent-section {
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+
+.transaction-table th,
+.transaction-table td {
+    vertical-align: middle;
+}
+
+.transaction-table th:last-child,
+.transaction-table td:last-child {
+    text-align: right;
+}
+
+.transaction-search input {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transaction-search input:hover {
+    border-color: #a9c5b6;
+}
+
+.transaction-empty {
+    padding: 30px 20px;
+    text-align: center;
+    color: #7a8981;
+    font-size: 13px;
+    background-color: #ffffff;
+}
+
+.transaction-no-results {
+    padding: 24px 20px;
+    text-align: center;
+    color: #7a8981;
+    font-size: 13px;
+    background-color: #ffffff;
+    border-top: 1px solid #e5ece8;
+}
+
+.transaction-loading {
+    padding: 24px 20px;
+    text-align: center;
+    color: #5f7469;
+    font-size: 13px;
+    background-color: #ffffff;
+}
+
+.transaction-error {
+    padding: 24px 20px;
+    text-align: center;
+    color: #b24a3a;
+    font-size: 13px;
+    background-color: #fff8f6;
+    border-top: 1px solid #f0d9d4;
+}
+
+@media (max-width: 700px) {
+    .transaction-table-container {
+        overflow-x: auto;
+    }
+
+    .transaction-table {
+        min-width: 600px;
+    }
+
+    .transaction-table th,
+    .transaction-table td {
+        padding: 12px;
+    }
+}
+
+.transaction-table-container {
+    box-shadow: 0 3px 10px rgba(18, 55, 42, 0.06);
+}
+
+.transaction-table tbody tr:last-child td {
+    border-bottom: none;
+}
