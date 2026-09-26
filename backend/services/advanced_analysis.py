@@ -27,3 +27,21 @@ def calculate_category_totals(transactions):
         category_totals[category] += amount
 
     return category_totals
+
+def generate_dashboard_insights(transactions):
+    total_spending = 0
+    highest_expense = 0
+
+    for transaction in transactions:
+        amount = float(transaction["amount"])
+
+        total_spending += amount
+
+        if amount > highest_expense:
+            highest_expense = amount
+
+    return {
+        "total_spending": total_spending,
+        "highest_expense": highest_expense,
+        "transaction_count": len(transactions)
+    }
