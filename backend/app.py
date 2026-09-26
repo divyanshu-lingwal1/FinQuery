@@ -1,4 +1,5 @@
 from services.import_preview import create_preview
+from services.import_history import save_import_history
 from datetime import date
 from flask import Flask, request, session
 from flask_cors import CORS
@@ -48,6 +49,46 @@ def import_preview():
     return {
         "success": True,
         "preview": preview
+    }
+
+@app.route("/api/import/history")
+def import_history():
+    if "user_id" not in session:
+        return {
+            "success": False,
+            "message": "Please login first"
+        }, 401
+
+    from database.db import get_connection
+
+    db = get_connection()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        SELECT id, file_type, record_count, imported_at
+        FROM import_history
+        WHERE user_id = %s
+        ORDER BY imported_at DESC
+    """, (session["user_id"],))
+
+    results = cursor.fetchall()
+
+    cursor.close()
+    db.close()
+
+    history = []
+
+    for row in results:
+        history.append({
+            "id": row[0],
+            "file_type": row[1],
+            "record_count": row[2],
+            "imported_at": str(row[3])
+        })
+
+    return {
+        "success": True,
+        "history": history
     }
 
 @app.route("/api/import/csv", methods=["POST"])
