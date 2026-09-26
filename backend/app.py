@@ -1,3 +1,4 @@
+from services.import_preview import create_preview
 from datetime import date
 from flask import Flask, request, session
 from flask_cors import CORS
@@ -25,6 +26,29 @@ from services.analysis import (
 app = Flask(__name__)
 
 app.secret_key = "finquery-secret-key"
+
+@app.route("/api/import/preview", methods=["POST"])
+def import_preview():
+    if "user_id" not in session:
+        return {
+            "success": False,
+            "message": "Please login first"
+        }, 401
+
+    data = request.get_json()
+
+    if not data or "transactions" not in data:
+        return {
+            "success": False,
+            "message": "No transactions provided"
+        }, 400
+
+    preview = create_preview(data["transactions"])
+
+    return {
+        "success": True,
+        "preview": preview
+    }
 
 @app.route("/api/import/csv", methods=["POST"])
 def import_csv():
