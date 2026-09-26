@@ -460,6 +460,18 @@
 
                     data: monthlyData,
 
+                    borderColor: "#2e7d5b",
+
+                    backgroundColor: "rgba(46, 125, 91, 0.12)",
+
+                    pointBackgroundColor: "#2e7d5b",
+
+                    pointBorderColor: "#ffffff",
+
+                    pointBorderWidth: 2,
+
+                    pointRadius: 4,
+
                     borderWidth: 3,
 
                     tension: 0.4,
@@ -591,9 +603,23 @@
 
                 labels: categoryLabels,
 
-                datasets: [{
+               datasets: [{
 
                     data: categoryAmounts,
+
+                    backgroundColor: [
+                        "#2e7d5b",
+                        "#4caf50",
+                        "#81c784",
+                        "#a5d6a7",
+                        "#66bb6a",
+                        "#388e3c",
+                        "#1b5e20",
+                        "#8bc34a",
+                        "#c8e6c9"
+                    ],
+
+                    borderColor: "#ffffff",
 
                     borderWidth: 2
 
@@ -676,20 +702,26 @@
         .then(response => response.json())
         .then(result => {
 
-            document.getElementById("totalSpending").textContent =
-                "₹" + result.total_spending;
+           document.getElementById("totalSpending").textContent =
+                "₹" + Number(result.total_spending).toLocaleString("en-IN");
 
             document.getElementById("totalTransactions").textContent =
-                result.total_transactions;
+                Number(result.total_transactions).toLocaleString("en-IN");
 
             document.getElementById("highestExpense").textContent =
-                "₹" + result.highest_category_amount;
+                "₹" + Number(result.highest_category_amount).toLocaleString("en-IN", {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
 
             document.getElementById("highestCategory").textContent =
                 result.highest_category;
 
             document.getElementById("averageExpense").textContent =
-                "₹" + result.average_transaction;
+                "₹" + Number(result.average_transaction).toLocaleString("en-IN", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
 
         })
         .catch(error => {

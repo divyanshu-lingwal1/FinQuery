@@ -853,6 +853,444 @@ body {
 
     .sidebar {
         width: 100%;
+        min-width: 0;
+        min-height: auto;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .menu-item {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .main-content {
+        padding: 18px;
+    }
+
+    .top-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .charts-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .spending-chart,
+    .category-chart {
+        height: 230px;
+    }
+
+    .recent-section {
+        overflow-x: auto;
+        padding: 16px;
+    }
+
+    .dashboard-table {
+        min-width: 560px;
+    }
+
+}
+
+/* =========================================
+   FINQUERY-V2 DASHBOARD - GREEN THEME
+   ========================================= */
+
+.dashboard-container {
+    background-color: #f4f7f5;
+}
+
+.sidebar {
+    background-color: #12372a;
+}
+
+.logo-icon {
+    background-color: #2e7d5b;
+}
+
+.menu-item.active {
+    background-color: #2e7d5b;
+}
+
+.menu-item:hover {
+    background-color: #1b4d3a;
+}
+
+.budget-box {
+    background-color: #174632;
+}
+
+.budget-progress {
+    background-color: #4caf50;
+}
+
+.insight-box {
+    background-color: #e8f5ee;
+}
+
+.insight-box small {
+    color: #2e7d5b;
+}
+
+.insight-box p {
+    color: #234b39;
+}
+
+.view-all {
+    color: #2e7d5b;
+}
+
+/* Dashboard alignment */
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.dashboard-container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* =========================================
+   STEP 3 - FINANCIAL SIDEBAR
+   ========================================= */
+
+.sidebar {
+    width: 250px;
+    background-color: #12372a;
+    padding: 28px 18px;
+    border-right: 1px solid #0d2b21;
+}
+
+.logo-section {
+    padding: 5px 10px 30px;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    background-color: #2e7d5b;
+    border-radius: 10px;
+    font-size: 22px;
+}
+
+.logo-section h1 {
+    font-size: 21px;
+    margin-top: 10px;
+}
+
+.logo-section p {
+    color: #a8c7b8;
+}
+
+.menu-title {
+    color: #8eaf9f;
+}
+
+.menu-item {
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: #d9e8e1;
+}
+
+.menu-item:hover {
+    background-color: #1b4d3a;
+}
+
+.menu-item.active {
+    background-color: #2e7d5b;
+    color: white;
+}
+
+.budget-box {
+    background-color: #174632;
+    border: 1px solid #2e7d5b;
+}
+
+.insight-box {
+    background-color: #e8f5ee;
+}
+
+.logout {
+    color: #a8c7b8;
+}
+
+.logout:hover {
+    background-color: #1b4d3a;
+    color: white;
+}
+
+/* =========================================
+   STEP 4 - MAIN DASHBOARD AREA
+   ========================================= */
+
+.main-content {
+    background-color: #f4f7f5;
+    padding: 35px;
+}
+
+.top-header {
+    margin-bottom: 30px;
+}
+
+.top-header h2 {
+    font-size: 28px;
+    color: #12372a;
+    font-weight: 600;
+}
+
+.top-header p {
+    color: #66756e;
+    font-size: 13px;
+}
+
+.user-section > span {
+    background-color: #dcefe5;
+}
+
+.user-section strong {
+    color: #12372a;
+}
+
+.user-section small {
+    color: #708078;
+}
+
+/* =========================================
+   STEP 5 - SUMMARY CARDS
+   ========================================= */
+
+.summary-grid {
+    gap: 18px;
+}
+
+.summary-card {
+    background-color: #ffffff;
+    padding: 22px;
+    border: 1px solid #e2ebe6;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(18, 55, 42, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(18, 55, 42, 0.10);
+}
+
+.summary-card p {
+    color: #66756e;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.summary-card h3 {
+    color: #12372a;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.summary-card span {
+    color: #819088;
+}
+
+/* =========================================
+   STEP 6 - CHART SECTIONS
+   ========================================= */
+
+.monthly-section,
+.category-section {
+    background-color: #ffffff;
+    border: 1px solid #e2ebe6;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(18, 55, 42, 0.06);
+}
+
+.section-header h3 {
+    color: #12372a;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.section-header p {
+    color: #74827c;
+}
+
+.section-header select {
+    border: 1px solid #d6e2dc;
+    background-color: #ffffff;
+    color: #345047;
+    border-radius: 6px;
+}
+
+.section-header select:focus {
+    outline: none;
+    border-color: #2e7d5b;
+}
+
+.spending-chart,
+.category-chart {
+    height: 280px;
+}
+
+/* =========================================
+   STEP 7 - RECENT TRANSACTIONS
+   ========================================= */
+
+.recent-section {
+    background-color: #ffffff;
+    border: 1px solid #e2ebe6;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(18, 55, 42, 0.06);
+    margin-top: 22px;
+    padding: 22px;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.dashboard-table th {
+    padding: 13px 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: #64736c;
+    background-color: #f5f8f6;
+    border-bottom: 1px solid #e1e9e5;
+}
+
+.dashboard-table td {
+    padding: 14px 12px;
+    font-size: 12px;
+    color: #394b43;
+    border-bottom: 1px solid #edf1ef;
+}
+
+.dashboard-table tr:hover td {
+    background-color: #f7faf8;
+}
+
+.dashboard-table tr:last-child td {
+    border-bottom: none;
+}
+
+.dashboard-table td:last-child {
+    color: #12372a;
+    font-weight: 600;
+}
+
+.view-all {
+    color: #2e7d5b;
+    font-weight: 600;
+}
+
+.view-all:hover {
+    color: #1f6245;
+}
+
+/* =========================================
+   STEP 8 - MONTHLY BUDGET
+   ========================================= */
+
+.budget-box {
+    background-color: #174632;
+    border: 1px solid #285f49;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.budget-box small {
+    color: #a8c7b8;
+}
+
+.budget-box h3 {
+    color: #ffffff;
+    font-size: 22px;
+    margin: 8px 0 2px;
+}
+
+.budget-box p {
+    color: #a8c7b8;
+}
+
+.budget-bar {
+    background-color: #285f49;
+}
+
+.budget-progress {
+    background-color: #62b889;
+}
+
+/* =========================================
+   STEP 9 - AI INSIGHT
+   ========================================= */
+
+.insight-box {
+    background-color: #e8f5ee;
+    border: 1px solid #cce5d6;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.insight-box small {
+    color: #2e7d5b;
+    font-weight: 600;
+}
+
+.insight-box p {
+    color: #315646;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+/* =========================================
+   STEP 10 - RESPONSIVE DASHBOARD
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content {
+        padding: 25px;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
         min-height: auto;
     }
 
@@ -896,5 +1334,209 @@ body {
     .dashboard-table {
         min-width: 600px;
     }
+}
 
+.top-header h2 {
+    letter-spacing: -0.3px;
+}
+
+.main-content {
+    background: #f7f9f8;
+}
+
+.summary-card p {
+    letter-spacing: 0.2px;
+}
+
+.summary-card h3 {
+    letter-spacing: -0.4px;
+}
+
+.summary-card h3 {
+    margin-top: 4px;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(18, 55, 42, 0.12);
+}
+
+.monthly-section,
+.category-section {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.monthly-section:hover,
+.category-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(18, 55, 42, 0.10);
+}
+
+.recent-section {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.recent-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(18, 55, 42, 0.10);
+}
+
+.dashboard-table th {
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.dashboard-table td {
+    line-height: 1.4;
+}
+
+.dashboard-table td:last-child {
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.menu-item {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.logo-section h1 {
+    letter-spacing: -0.3px;
+}
+
+.menu-item {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.menu-title {
+    letter-spacing: 0.5px;
+    font-size: 10px;
+}
+
+.budget-box {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.budget-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.15);
+}
+
+.insight-box {
+    transition: box-shadow 0.2s ease;
+}
+
+.insight-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(46, 125, 91, 0.15);
+}
+
+.logout {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.logout:hover {
+    background-color: #1b4d3a;
+    color: #ffffff;
+}
+
+.sidebar-menu {
+    gap: 6px;
+}
+
+.menu-item span {
+    font-size: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.main-content {
+    padding-top: 40px;
+}
+
+.top-header {
+    padding-bottom: 5px;
+}
+
+.user-section {
+    gap: 10px;
+}
+
+.user-section strong {
+    font-weight: 600;
+}
+
+.user-section > span {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.summary-grid {
+    align-items: stretch;
+}
+
+.charts-row {
+    gap: 20px;
+}
+
+.monthly-section,
+.category-section {
+    padding: 22px;
+}
+
+.section-header h3 {
+    letter-spacing: -0.2px;
+}
+
+.recent-section h3 {
+    letter-spacing: -0.2px;
+}
+
+.recent-section h3 {
+    margin-bottom: 4px;
+}
+
+.dashboard-table {
+    margin-top: 18px;
+}
+
+.view-all {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.view-all {
+    transition: color 0.2s ease;
+}
+
+.view-all:hover {
+    color: #1f6245;
+}
+
+.view-all {
+    display: inline-block;
+    margin-top: 12px;
+}
+
+.sidebar {
+    min-width: 250px;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: none;
+}
+
+.main-content {
+    overflow-x: hidden;
 }
