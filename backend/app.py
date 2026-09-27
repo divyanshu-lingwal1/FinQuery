@@ -5,6 +5,7 @@ from flask import Flask, request, session
 from flask_cors import CORS
 from importers.pdf_importer import read_pdf_file, parse_pdf_transactions
 from importers.docx_importer import read_docx_file, parse_docx_transactions
+from importers.ocr_importer import read_image_file, parse_image_transactions
 from importers.csv_importer import read_csv_file
 from importers.ocr_importer import read_image_file
 from importers.qr_importer import read_qr_code
@@ -243,38 +244,65 @@ def import_docx():
 
 @app.route("/api/import/image", methods=["POST"])
 def import_image():
+
     if "user_id" not in session:
-        return {"success": False, "message": "Please login first"}, 401
+        return {
+            "success": False,
+            "message": "Please login first"
+        }, 401
 
     if "file" not in request.files:
-        return {"success": False, "message": "No file uploaded"}, 400
+        return {
+            "success": False,
+            "message": "No file uploaded"
+        }, 400
 
     file = request.files["file"]
 
     if file.filename == "":
-        return {"success": False, "message": "No file selected"}, 400
+        return {
+            "success": False,
+            "message": "No file selected"
+        }, 400
 
     allowed_extensions = [".png", ".jpg", ".jpeg"]
 
-    if not any(file.filename.lower().endswith(ext) for ext in allowed_extensions):
+    if not any(
+        file.filename.lower().endswith(ext)
+        for ext in allowed_extensions
+    ):
         return {
             "success": False,
             "message": "Only PNG, JPG and JPEG files are allowed"
         }, 400
 
     file_path = "temp_import_image"
-
     file.save(file_path)
 
     try:
+
         text = read_image_file(file_path)
+
+        transactions = parse_image_transactions(text)
+
+        import_transactions(
+            transactions,
+            session["user_id"]
+        )
+
+        print("\n========== IMAGE TRANSACTIONS ==========")
+        print(transactions)
+        print("========== END IMAGE TRANSACTIONS ==========\n")
 
         return {
             "success": True,
-            "text": text
+            "message": "Image transactions imported successfully!",
+            "count": len(transactions),
+            "transactions": transactions
         }
 
     except Exception as error:
+
         return {
             "success": False,
             "message": str(error)

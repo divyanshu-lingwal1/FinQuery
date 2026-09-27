@@ -186,11 +186,25 @@
 
                 <div class="import-card">
 
-                    <div class="import-drop-area" id="importDropArea">
+
+                    <!-- DROP AREA -->
+
+                    <div
+                        class="import-drop-area"
+                        id="importDropArea"
+                    >
+
                         <span>Drop your file here</span>
-                        <small>or click Select File below</small>
+
+                        <small>
+                            or click Select File below
+                        </small>
+
                     </div>
 
+
+
+                    <!-- IMPORT ICON -->
 
                     <div class="import-icon">
 
@@ -199,97 +213,185 @@
                     </div>
 
 
+
+                    <!-- TITLE -->
+
                     <h3>Select Your File</h3>
 
+
+
+                    <!-- DESCRIPTION -->
 
                     <p>
                         Supported formats: CSV, PDF, DOCX, JPG and PNG.
                     </p>
 
+
                     <small class="import-file-limit">
+
                         Maximum file size: 10 MB
+
                     </small>
 
 
-                    <input type="file" id="importFile">
 
-                    <div id="selectedFileBox" class="selected-file-box">
+                    <!-- FILE INPUT -->
+
+                    <input
+                        type="file"
+                        id="importFile"
+                    >
+
+
+
+                    <!-- SELECTED FILE -->
+
+                    <div
+                        id="selectedFileBox"
+                        class="selected-file-box"
+                    >
 
                         <div class="selected-file-info">
 
-                            <span class="selected-file-icon">✓</span>
+                            <span class="selected-file-icon">
+
+                                ✓
+
+                            </span>
+
 
                             <div>
+
                                 <strong id="selectedFileName"></strong>
+
                                 <small id="selectedFileSize"></small>
+
                             </div>
 
                         </div>
+
 
                         <button
                             type="button"
                             id="removeFileButton"
                             class="remove-file-button"
                         >
+
                             Remove File
+
                         </button>
 
                     </div>
 
+
+
+                    <!-- ACTION BUTTONS -->
+
                     <div class="import-actions">
+
 
                         <button
                             type="button"
                             class="import-button"
                             id="importButton"
                         >
+
                             Select File
+
                         </button>
+
 
                         <button
                             type="button"
                             class="import-submit-button"
                             id="importSubmitButton"
                         >
+
                             Import File
+
                         </button>
 
                     </div>
 
-                    <div id="importStatus" class="import-status"></div>
+
+
+                    <!-- STATUS -->
+
+                    <div
+                        id="importStatus"
+                        class="import-status"
+                    ></div>
 
 
                 </div>
 
+
+
+                <!-- =========================================
+                     IMPORT STEPS
+                     ========================================= -->
+
                 <div class="import-steps">
+
 
                     <h3>How Import Works</h3>
 
+
                     <div class="import-step-list">
 
+
                         <div class="import-step">
+
                             <span>1</span>
+
                             <div>
+
                                 <strong>Select File</strong>
-                                <small>Choose or drop your financial file.</small>
+
+                                <small>
+                                    Choose or drop your financial file.
+                                </small>
+
                             </div>
+
                         </div>
 
+
+
                         <div class="import-step">
+
                             <span>2</span>
+
                             <div>
+
                                 <strong>Validate Data</strong>
-                                <small>We check the file format and size.</small>
+
+                                <small>
+                                    We check the file format and size.
+                                </small>
+
                             </div>
+
                         </div>
 
+
+
                         <div class="import-step">
+
                             <span>3</span>
+
                             <div>
+
                                 <strong>Import Transactions</strong>
-                                <small>Your valid data is added to FinQuery.</small>
+
+                                <small>
+                                    Your valid data is added to FinQuery.
+                                </small>
+
                             </div>
+
                         </div>
+
 
                     </div>
 
@@ -299,10 +401,15 @@
             </section>
 
 
+
+            <!-- BACK TO DASHBOARD -->
+
             <div class="back-dashboard">
 
                 <a href="index.html">
+
                     ← Back to Dashboard
+
                 </a>
 
             </div>
@@ -312,271 +419,695 @@
 
     </div>
 
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
     <script>
-        const importFile = document.getElementById("importFile");
-        const importButton = document.getElementById("importButton");
-        const selectedFileName = document.getElementById("selectedFileName");
-        const selectedFileBox = document.getElementById("selectedFileBox");
-        const selectedFileSize = document.getElementById("selectedFileSize");
-        const removeFileButton = document.getElementById("removeFileButton");
-        const importDropArea = document.getElementById("importDropArea");
-        const importCard = document.querySelector(".import-card");
+
+
+        /* =========================================
+           GET ELEMENTS
+           ========================================= */
+
+        const importFile =
+            document.getElementById("importFile");
+
+        const importButton =
+            document.getElementById("importButton");
+
+        const selectedFileName =
+            document.getElementById("selectedFileName");
+
+        const selectedFileBox =
+            document.getElementById("selectedFileBox");
+
+        const selectedFileSize =
+            document.getElementById("selectedFileSize");
+
+        const removeFileButton =
+            document.getElementById("removeFileButton");
+
+        const importDropArea =
+            document.getElementById("importDropArea");
+
+        const importCard =
+            document.querySelector(".import-card");
+
         const importSubmitButton =
             document.getElementById("importSubmitButton");
 
+        const importStatus =
+            document.getElementById("importStatus");
+
+
+
+        /* =========================================
+           FILE VALIDATION
+           ========================================= */
+
         function validateFile(file) {
 
+
             if (file.size > 10 * 1024 * 1024) {
+
                 return "too_large";
+
             }
 
+
             const allowedExtensions = [
+
                 ".csv",
                 ".pdf",
                 ".docx",
                 ".jpg",
                 ".jpeg",
                 ".png"
+
             ];
 
-            const fileName = file.name.toLowerCase();
 
-            return allowedExtensions.some(function (extension) {
-                return fileName.endsWith(extension);
-            });
+            const fileName =
+                file.name.toLowerCase();
+
+
+            return allowedExtensions.some(
+                function (extension) {
+
+                    return fileName.endsWith(extension);
+
+                }
+            );
+
         }
+
+
+
+        /* =========================================
+           SHOW SELECTED FILE
+           ========================================= */
 
         function showSelectedFile(file) {
 
-            const importStatus = document.getElementById("importStatus");
+
             importStatus.classList.remove("show");
 
-            selectedFileName.textContent = file.name;
 
-            const fileSizeKB = (file.size / 1024).toFixed(1);
+            selectedFileName.textContent =
+                file.name;
 
-            selectedFileSize.textContent = fileSizeKB + " KB";
+
+            const fileSizeKB =
+                (file.size / 1024).toFixed(1);
+
+
+            selectedFileSize.textContent =
+                fileSizeKB + " KB";
+
 
             selectedFileBox.classList.add("show");
+
+
             importSubmitButton.classList.add("show");
+
         }
 
-        importButton.addEventListener("click", function () {
-            importFile.click();
-        });
 
-        importDropArea.addEventListener("click", function () {
-            importFile.click();
-        });
 
-        importCard.addEventListener("dragover", function (event) {
-            event.preventDefault();
-        });
+        /* =========================================
+           SELECT FILE BUTTON
+           ========================================= */
 
-        importCard.addEventListener("drop", function (event) {
-            event.preventDefault();
-            importCard.classList.remove("drag-active");
+        importButton.addEventListener(
+            "click",
+            function () {
 
-            if (event.dataTransfer.files.length > 0) {
+                importFile.click();
 
-                const file = event.dataTransfer.files[0];
-
-                const validationResult = validateFile(file);
-
-                if (validationResult === "too_large") {
-                    selectedFileName.textContent =
-                        "File is too large. Maximum allowed size is 10 MB.";
-
-                    return;
-                }
-
-                if (!validationResult) {
-                    selectedFileName.textContent =
-                        "Unsupported file type. Please select CSV, PDF, DOCX, JPG or PNG.";
-
-                    return;
-                }
-
-                importFile.files = event.dataTransfer.files;
-
-                showSelectedFile(file);
             }
-        });
+        );
 
-        importCard.addEventListener("dragenter", function (event) {
-            event.preventDefault();
-            importCard.classList.add("drag-active");
-        });
 
-        importCard.addEventListener("dragleave", function (event) {
-            event.preventDefault();
-            importCard.classList.remove("drag-active");
-        });
 
-        importFile.addEventListener("change", function () {
-            if (importFile.files.length > 0) {
+        /* =========================================
+           DROP AREA CLICK
+           ========================================= */
 
-                const file = importFile.files[0];
-                const fileName = file.name.toLowerCase();
+        importDropArea.addEventListener(
+            "click",
+            function () {
 
-                const validationResult = validateFile(file);
+                importFile.click();
 
-                if (validationResult === "too_large") {
-                    selectedFileName.textContent =
-                        "File is too large. Maximum allowed size is 10 MB.";
-
-                    importFile.value = "";
-                    return;
-                }
-
-                if (!validationResult) {
-                    selectedFileName.textContent =
-                        "Unsupported file type. Please select CSV, PDF, DOCX, JPG or PNG.";
-
-                    importFile.value = "";
-                    return;
-                }
-
-                showSelectedFile(file);
             }
-        });
+        );
 
-        removeFileButton.addEventListener("click", function () {
 
-            const importStatus = document.getElementById("importStatus");
 
-            importFile.value = "";
+        /* =========================================
+           DRAG OVER
+           ========================================= */
 
-            selectedFileName.textContent = "";
-            selectedFileSize.textContent = "";
+        importCard.addEventListener(
+            "dragover",
+            function (event) {
 
-            selectedFileBox.classList.remove("show");
-            importSubmitButton.classList.remove("show");
+                event.preventDefault();
 
-            importSubmitButton.textContent = "Import File";
-            importSubmitButton.disabled = false;
-
-            importStatus.textContent = "";
-            importStatus.classList.remove("show");
-
-        });
-
-        importSubmitButton.addEventListener("click", async function (event) {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-            const importStatus = document.getElementById("importStatus");
-            importStatus.classList.add("show");
-
-            if (importFile.files.length === 0) {
-                importStatus.textContent = "Please select a file first.";
-                return;
             }
+        );
 
-            const file = importFile.files[0];
 
-            importSubmitButton.textContent = "Processing...";
-            importSubmitButton.disabled = true;
 
-            importStatus.innerHTML =
-                "<strong>Processing file...</strong><br>" +
-                "Please wait while " + file.name + " is being imported.";
+        /* =========================================
+           FILE DROP
+           ========================================= */
 
-            const formData = new FormData();
-            formData.append("file", file);
+        importCard.addEventListener(
+            "drop",
+            function (event) {
 
-            const fileExtension = file.name.toLowerCase().split(".").pop();
+                event.preventDefault();
 
-            let importUrl;
+                importCard.classList.remove("drag-active");
 
-            if (fileExtension === "csv") {
 
-                importUrl =
-                    "http://127.0.0.1:5000/api/import/csv";
+                if (
+                    event.dataTransfer.files.length > 0
+                ) {
 
-            } else if (fileExtension === "pdf") {
 
-                importUrl =
-                    "http://127.0.0.1:5000/api/import/pdf";
+                    const file =
+                        event.dataTransfer.files[0];
 
-            } else if (fileExtension === "docx") {
 
-                importUrl =
-                    "http://127.0.0.1:5000/api/import/docx";
+                    const validationResult =
+                        validateFile(file);
 
-            } else {
 
-                importStatus.innerHTML =
-                    "<strong>Import failed</strong><br>" +
-                    "This file format is not connected yet.";
 
-                importSubmitButton.textContent = "Import File";
-                importSubmitButton.disabled = false;
+                    if (
+                        validationResult === "too_large"
+                    ) {
 
-                return;
-            }
+                        selectedFileName.textContent =
+                            "File is too large. Maximum allowed size is 10 MB.";
 
-            try {
+                        return;
 
-                const response = await fetch(
-                    importUrl,
-                    {
-                        method: "POST",
-                        credentials: "include",
-                        body: formData
                     }
+
+
+
+                    if (!validationResult) {
+
+                        selectedFileName.textContent =
+                            "Unsupported file type. Please select CSV, PDF, DOCX, JPG or PNG.";
+
+                        return;
+
+                    }
+
+
+
+                    importFile.files =
+                        event.dataTransfer.files;
+
+
+                    showSelectedFile(file);
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           DRAG ENTER
+           ========================================= */
+
+        importCard.addEventListener(
+            "dragenter",
+            function (event) {
+
+                event.preventDefault();
+
+                importCard.classList.add("drag-active");
+
+            }
+        );
+
+
+
+        /* =========================================
+           DRAG LEAVE
+           ========================================= */
+
+        importCard.addEventListener(
+            "dragleave",
+            function (event) {
+
+                event.preventDefault();
+
+                importCard.classList.remove("drag-active");
+
+            }
+        );
+
+
+
+        /* =========================================
+           FILE INPUT CHANGE
+           ========================================= */
+
+        importFile.addEventListener(
+            "change",
+            function () {
+
+
+                if (
+                    importFile.files.length === 0
+                ) {
+
+                    return;
+
+                }
+
+
+                const file =
+                    importFile.files[0];
+
+
+                const validationResult =
+                    validateFile(file);
+
+
+
+                if (
+                    validationResult === "too_large"
+                ) {
+
+                    selectedFileName.textContent =
+                        "File is too large. Maximum allowed size is 10 MB.";
+
+                    importFile.value = "";
+
+                    return;
+
+                }
+
+
+
+                if (!validationResult) {
+
+                    selectedFileName.textContent =
+                        "Unsupported file type. Please select CSV, PDF, DOCX, JPG or PNG.";
+
+                    importFile.value = "";
+
+                    return;
+
+                }
+
+
+                showSelectedFile(file);
+
+            }
+        );
+
+
+
+        /* =========================================
+           REMOVE FILE
+           ========================================= */
+
+        removeFileButton.addEventListener(
+            "click",
+            function () {
+
+
+                importFile.value = "";
+
+
+                selectedFileName.textContent = "";
+
+                selectedFileSize.textContent = "";
+
+
+                selectedFileBox.classList.remove(
+                    "show"
                 );
 
-                const result = await response.json();
 
-                if (response.ok && result.success) {
+                importSubmitButton.classList.remove(
+                    "show"
+                );
 
-                    if (fileExtension === "csv") {
 
-                        importStatus.innerHTML =
-                            "<strong class=\"import-ready\">Import successful</strong><br>" +
-                            result.count +
-                            " transactions imported successfully.";
+                importSubmitButton.textContent =
+                    "Import File";
 
-                    } else if (fileExtension === "pdf") {
 
-                        importStatus.innerHTML =
-                            "<strong class=\"import-ready\">PDF processed successfully</strong><br>" +
-                            "PDF text was extracted successfully." +
-                            "<div class=\"pdf-preview\">" +
-                            "<strong>Extracted Text:</strong>" +
-                            "<pre>" + result.text + "</pre>" +
-                            "</div>";
-                    }
+                importSubmitButton.disabled =
+                    false;
 
-                    } else if (fileExtension === "docx") {
 
-                        importStatus.innerHTML =
-                            "<strong class=\"import-ready\">DOCX import successful</strong><br>" +
-                            result.count +
-                            " transactions imported successfully.";
+                importStatus.textContent = "";
 
-                } else {
+
+                importStatus.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           IMPORT FILE
+           ========================================= */
+
+        importSubmitButton.addEventListener(
+            "click",
+            async function (event) {
+
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                importStatus.classList.add(
+                    "show"
+                );
+
+
+
+                /* =====================================
+                   CHECK FILE
+                   ===================================== */
+
+                if (
+                    importFile.files.length === 0
+                ) {
+
+                    importStatus.textContent =
+                        "Please select a file first.";
+
+                    return;
+
+                }
+
+
+
+                const file =
+                    importFile.files[0];
+
+
+
+                /* =====================================
+                   PROCESSING STATE
+                   ===================================== */
+
+                importSubmitButton.textContent =
+                    "Processing...";
+
+
+                importSubmitButton.disabled =
+                    true;
+
+
+                importStatus.innerHTML =
+                    "<strong>Processing file...</strong><br>" +
+                    "Please wait while " +
+                    file.name +
+                    " is being imported.";
+
+
+
+                /* =====================================
+                   FORM DATA
+                   ===================================== */
+
+                const formData =
+                    new FormData();
+
+
+                formData.append(
+                    "file",
+                    file
+                );
+
+
+
+                /* =====================================
+                   GET FILE EXTENSION
+                   ===================================== */
+
+                const fileExtension =
+                    file.name
+                        .toLowerCase()
+                        .split(".")
+                        .pop();
+
+
+
+                /* =====================================
+                   SELECT API ENDPOINT
+                   ===================================== */
+
+                let importUrl;
+
+
+
+                if (
+                    fileExtension === "csv"
+                ) {
+
+                    importUrl =
+                        "http://127.0.0.1:5000/api/import/csv";
+
+                }
+
+
+                else if (
+                    fileExtension === "pdf"
+                ) {
+
+                    importUrl =
+                        "http://127.0.0.1:5000/api/import/pdf";
+
+                }
+
+
+                else if (
+                    fileExtension === "docx"
+                ) {
+
+                    importUrl =
+                        "http://127.0.0.1:5000/api/import/docx";
+
+                }
+
+
+                else if (
+                    fileExtension === "png" ||
+                    fileExtension === "jpg" ||
+                    fileExtension === "jpeg"
+                ) {
+
+                    importUrl =
+                        "http://127.0.0.1:5000/api/import/image";
+
+                }
+
+
+                else {
 
                     importStatus.innerHTML =
                         "<strong>Import failed</strong><br>" +
-                        result.message;
+                        "This file format is not connected yet.";
+
+                    importSubmitButton.textContent =
+                        "Import File";
+
+                    importSubmitButton.disabled =
+                        false;
+
+                    return;
 
                 }
 
-            } catch (error) {
 
-                importStatus.innerHTML =
-                    "<strong>Import failed</strong><br>" +
-                    "Could not connect to the backend.";
+
+                /* =====================================
+                   SEND FILE TO BACKEND
+                   ===================================== */
+
+                try {
+
+
+                    const response =
+                        await fetch(
+                            importUrl,
+                            {
+                                method: "POST",
+                                credentials: "include",
+                                body: formData
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+
+                    /* =================================
+                       SUCCESS
+                       ================================= */
+
+                    if (
+                        response.ok &&
+                        result.success
+                    ) {
+
+
+                        /* =============================
+                           CSV
+                           ============================= */
+
+                        if (
+                            fileExtension === "csv"
+                        ) {
+
+                            importStatus.innerHTML =
+                                "<strong class=\"import-ready\">" +
+                                "Import successful" +
+                                "</strong><br>" +
+                                result.count +
+                                " transactions imported successfully.";
+
+                        }
+
+
+
+                        /* =============================
+                           PDF
+                           ============================= */
+
+                        else if (
+                            fileExtension === "pdf"
+                        ) {
+
+                            importStatus.innerHTML =
+                                "<strong class=\"import-ready\">" +
+                                "PDF import successful" +
+                                "</strong><br>" +
+                                result.count +
+                                " transactions imported successfully.";
+
+                        }
+
+
+
+                        /* =============================
+                           DOCX
+                           ============================= */
+
+                        else if (
+                            fileExtension === "docx"
+                        ) {
+
+                            importStatus.innerHTML =
+                                "<strong class=\"import-ready\">" +
+                                "DOCX import successful" +
+                                "</strong><br>" +
+                                result.count +
+                                " transactions imported successfully.";
+
+                        }
+
+
+
+                        /* =============================
+                           IMAGE
+                           ============================= */
+
+                        else if (
+                            fileExtension === "png" ||
+                            fileExtension === "jpg" ||
+                            fileExtension === "jpeg"
+                        ) {
+
+                            importStatus.innerHTML =
+                                "<strong class=\"import-ready\">" +
+                                "Image import successful" +
+                                "</strong><br>" +
+                                result.count +
+                                " transactions imported successfully.";
+
+                        }
+
+                    }
+
+
+
+                    /* =================================
+                       FAILED RESPONSE
+                       ================================= */
+
+                    else {
+
+                        importStatus.innerHTML =
+                            "<strong>Import failed</strong><br>" +
+                            result.message;
+
+                    }
+
+                }
+
+
+
+                /* =====================================
+                   CONNECTION ERROR
+                   ===================================== */
+
+                catch (error) {
+
+                    console.error(
+                        "Import error:",
+                        error
+                    );
+
+
+                    importStatus.innerHTML =
+                        "<strong>Import failed</strong><br>" +
+                        "Could not connect to the backend.";
+
+                }
+
+
+
+                /* =====================================
+                   RESET BUTTON
+                   ===================================== */
+
+                importSubmitButton.textContent =
+                    "Import File";
+
+
+                importSubmitButton.disabled =
+                    false;
 
             }
 
-            importSubmitButton.textContent = "Import File";
-            importSubmitButton.disabled = false;
-
-        });
+        );
 
     </script>
 
