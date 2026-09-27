@@ -461,15 +461,16 @@
 
         });
 
-        importSubmitButton.addEventListener("click", function () {
+        importSubmitButton.addEventListener("click", async function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
 
             const importStatus = document.getElementById("importStatus");
+            importStatus.classList.add("show");
 
             if (importFile.files.length === 0) {
-
                 importStatus.textContent = "Please select a file first.";
-                importStatus.classList.add("show");
-
                 return;
             }
 
@@ -480,20 +481,88 @@
 
             importStatus.innerHTML =
                 "<strong>Processing file...</strong><br>" +
-                "Please wait while " + file.name + " is being prepared.";
+                "Please wait while " + file.name + " is being imported.";
 
-            importStatus.classList.add("show");
+            const formData = new FormData();
+            formData.append("file", file);
 
-            setTimeout(function () {
+            const fileExtension = file.name.toLowerCase().split(".").pop();
+
+            let importUrl;
+
+            if (fileExtension === "csv") {
+
+                importUrl =
+                    "http://127.0.0.1:5000/api/import/csv";
+
+            } else if (fileExtension === "pdf") {
+
+                importUrl =
+                    "http://127.0.0.1:5000/api/import/pdf";
+
+            } else {
 
                 importStatus.innerHTML =
-                    "<strong class=\"import-ready\">Ready to import</strong><br>" +
-                    file.name + " has been prepared successfully.";
+                    "<strong>Import failed</strong><br>" +
+                    "This file format is not connected yet.";
 
                 importSubmitButton.textContent = "Import File";
                 importSubmitButton.disabled = false;
 
-            }, 1500);
+                return;
+            }
+
+            try {
+
+                const response = await fetch(
+                    importUrl,
+                    {
+                        method: "POST",
+                        credentials: "include",
+                        body: formData
+                    }
+                );
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+
+                    if (fileExtension === "csv") {
+
+                        importStatus.innerHTML =
+                            "<strong class=\"import-ready\">Import successful</strong><br>" +
+                            result.count +
+                            " transactions imported successfully.";
+
+                    } else if (fileExtension === "pdf") {
+
+                        importStatus.innerHTML =
+                            "<strong class=\"import-ready\">PDF processed successfully</strong><br>" +
+                            "PDF text was extracted successfully." +
+                            "<div class=\"pdf-preview\">" +
+                            "<strong>Extracted Text:</strong>" +
+                            "<pre>" + result.text + "</pre>" +
+                            "</div>";
+                    }
+
+                } else {
+
+                    importStatus.innerHTML =
+                        "<strong>Import failed</strong><br>" +
+                        result.message;
+
+                }
+
+            } catch (error) {
+
+                importStatus.innerHTML =
+                    "<strong>Import failed</strong><br>" +
+                    "Could not connect to the backend.";
+
+            }
+
+            importSubmitButton.textContent = "Import File";
+            importSubmitButton.disabled = false;
 
         });
 

@@ -3,7 +3,7 @@ from services.import_history import save_import_history
 from datetime import date
 from flask import Flask, request, session
 from flask_cors import CORS
-from importers.pdf_importer import read_pdf_file
+from importers.pdf_importer import read_pdf_file, parse_pdf_transactions
 from importers.csv_importer import read_csv_file
 from importers.ocr_importer import read_image_file
 from importers.qr_importer import read_qr_code
@@ -155,9 +155,22 @@ def import_pdf():
     try:
         text = read_pdf_file(file_path)
 
+        transactions = parse_pdf_transactions(text)
+
+        import_transactions(
+            transactions,
+            session["user_id"]
+        )
+
+        print("\n========== PDF TRANSACTIONS ==========")
+        print(transactions)
+        print("========== END PDF TRANSACTIONS ==========\n")
+
         return {
             "success": True,
-            "text": text
+            "message": "PDF transactions imported successfully!",
+            "count": len(transactions),
+            "transactions": transactions
         }
 
     except Exception as error:
