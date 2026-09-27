@@ -8,7 +8,7 @@ from importers.docx_importer import read_docx_file, parse_docx_transactions
 from importers.ocr_importer import read_image_file, parse_image_transactions
 from importers.csv_importer import read_csv_file
 from importers.ocr_importer import read_image_file
-from importers.qr_importer import read_qr_code
+from importers.qr_importer import read_qr_code, parse_qr_transaction
 from services.analysis import import_transactions
 from services.analysis import (
     get_total_spending,
@@ -310,44 +310,72 @@ def import_image():
 
 @app.route("/api/import/qr", methods=["POST"])
 def import_qr():
+
     if "user_id" not in session:
-        return {"success": False, "message": "Please login first"}, 401
+        return {
+            "success": False,
+            "message": "Please login first"
+        }, 401
 
     if "file" not in request.files:
-        return {"success": False, "message": "No file uploaded"}, 400
+        return {
+            "success": False,
+            "message": "No file uploaded"
+        }, 400
 
     file = request.files["file"]
 
     if file.filename == "":
-        return {"success": False, "message": "No file selected"}, 400
+        return {
+            "success": False,
+            "message": "No file selected"
+        }, 400
 
     allowed_extensions = [".png", ".jpg", ".jpeg"]
 
-    if not any(file.filename.lower().endswith(ext) for ext in allowed_extensions):
+    if not any(
+        file.filename.lower().endswith(ext)
+        for ext in allowed_extensions
+    ):
         return {
             "success": False,
             "message": "Only PNG, JPG and JPEG files are allowed"
         }, 400
 
     file_path = "temp_import_qr"
-
     file.save(file_path)
 
     try:
+
         data = read_qr_code(file_path)
+
+        transaction = parse_qr_transaction(data)
+
+        import_transactions(
+            [transaction],
+            session["user_id"]
+        )
+
+        print("\n========== QR TRANSACTION ==========")
+        print(transaction)
+        print("========== END QR TRANSACTION ==========\n")
 
         return {
             "success": True,
-            "data": data
+            "message": "QR transaction imported successfully!",
+            "count": 1,
+            "transaction": transaction
         }
 
     except ValueError as error:
+
         return {
             "success": False,
             "message": str(error)
         }, 400
 
     except Exception as error:
+
         return {
             "success": False,
             "message": str(error)

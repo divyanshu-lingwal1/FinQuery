@@ -235,6 +235,40 @@
 
 
 
+                    <!-- IMPORT TYPE -->
+
+                    <div class="import-type-selector">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="importType"
+                                value="normal"
+                                checked
+                            >
+
+                            Financial File
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="importType"
+                                value="qr"
+                            >
+
+                            QR Code
+
+                        </label>
+
+                    </div>
+
+
+
                     <!-- FILE INPUT -->
 
                     <input
@@ -462,6 +496,11 @@
         const importStatus =
             document.getElementById("importStatus");
 
+        const importTypeInputs =
+            document.querySelectorAll(
+                'input[name="importType"]'
+            );
+
 
 
         /* =========================================
@@ -507,13 +546,38 @@
 
 
         /* =========================================
+           GET IMPORT TYPE
+           ========================================= */
+
+        function getImportType() {
+
+            const selectedType =
+                document.querySelector(
+                    'input[name="importType"]:checked'
+                );
+
+            if (!selectedType) {
+
+                return "normal";
+
+            }
+
+            return selectedType.value;
+
+        }
+
+
+
+        /* =========================================
            SHOW SELECTED FILE
            ========================================= */
 
         function showSelectedFile(file) {
 
 
-            importStatus.classList.remove("show");
+            importStatus.classList.remove(
+                "show"
+            );
 
 
             selectedFileName.textContent =
@@ -528,10 +592,14 @@
                 fileSizeKB + " KB";
 
 
-            selectedFileBox.classList.add("show");
+            selectedFileBox.classList.add(
+                "show"
+            );
 
 
-            importSubmitButton.classList.add("show");
+            importSubmitButton.classList.add(
+                "show"
+            );
 
         }
 
@@ -592,7 +660,9 @@
 
                 event.preventDefault();
 
-                importCard.classList.remove("drag-active");
+                importCard.classList.remove(
+                    "drag-active"
+                );
 
 
                 if (
@@ -656,7 +726,9 @@
 
                 event.preventDefault();
 
-                importCard.classList.add("drag-active");
+                importCard.classList.add(
+                    "drag-active"
+                );
 
             }
         );
@@ -673,7 +745,9 @@
 
                 event.preventDefault();
 
-                importCard.classList.remove("drag-active");
+                importCard.classList.remove(
+                    "drag-active"
+                );
 
             }
         );
@@ -735,6 +809,31 @@
 
 
                 showSelectedFile(file);
+
+            }
+        );
+
+
+
+        /* =========================================
+           IMPORT TYPE CHANGE
+           ========================================= */
+
+        importTypeInputs.forEach(
+            function (input) {
+
+                input.addEventListener(
+                    "change",
+                    function () {
+
+                        importStatus.textContent = "";
+
+                        importStatus.classList.remove(
+                            "show"
+                        );
+
+                    }
+                );
 
             }
         );
@@ -829,6 +928,42 @@
                     importFile.files[0];
 
 
+                const importType =
+                    getImportType();
+
+
+
+                /* =====================================
+                   CHECK QR FILE TYPE
+                   ===================================== */
+
+                const fileExtension =
+                    file.name
+                        .toLowerCase()
+                        .split(".")
+                        .pop();
+
+
+                const isImage =
+                    fileExtension === "png" ||
+                    fileExtension === "jpg" ||
+                    fileExtension === "jpeg";
+
+
+                if (
+                    importType === "qr" &&
+                    !isImage
+                ) {
+
+                    importStatus.innerHTML =
+                        "<strong>Import failed</strong><br>" +
+                        "QR Code mode requires a JPG, JPEG or PNG image.";
+
+                    return;
+
+                }
+
+
 
                 /* =====================================
                    PROCESSING STATE
@@ -866,18 +1001,6 @@
 
 
                 /* =====================================
-                   GET FILE EXTENSION
-                   ===================================== */
-
-                const fileExtension =
-                    file.name
-                        .toLowerCase()
-                        .split(".")
-                        .pop();
-
-
-
-                /* =====================================
                    SELECT API ENDPOINT
                    ===================================== */
 
@@ -886,6 +1009,16 @@
 
 
                 if (
+                    importType === "qr"
+                ) {
+
+                    importUrl =
+                        "http://127.0.0.1:5000/api/import/qr";
+
+                }
+
+
+                else if (
                     fileExtension === "csv"
                 ) {
 
@@ -969,7 +1102,7 @@
 
 
                     /* =================================
-                       SUCCESS
+                       SUCCESS RESPONSE
                        ================================= */
 
                     if (
@@ -979,16 +1112,35 @@
 
 
                         /* =============================
-                           CSV
+                           QR CODE
                            ============================= */
 
                         if (
+                            importType === "qr"
+                        ) {
+
+                            importStatus.innerHTML =
+                                "<strong class=\"import-ready\">" +
+                                "QR import successful" +
+                                "</strong><br>" +
+                                result.count +
+                                " transaction imported successfully.";
+
+                        }
+
+
+
+                        /* =============================
+                           CSV
+                           ============================= */
+
+                        else if (
                             fileExtension === "csv"
                         ) {
 
                             importStatus.innerHTML =
                                 "<strong class=\"import-ready\">" +
-                                "Import successful" +
+                                "CSV import successful" +
                                 "</strong><br>" +
                                 result.count +
                                 " transactions imported successfully.";
@@ -1036,7 +1188,7 @@
 
 
                         /* =============================
-                           IMAGE
+                           IMAGE OCR
                            ============================= */
 
                         else if (
