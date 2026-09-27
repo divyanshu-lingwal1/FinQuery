@@ -5,64 +5,248 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FinQuery - Reports</title>
+    <title>FinQuery-V2 - Reports</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="dashboard-container">
 
-        <h1>Financial Reports</h1>
+        <!-- Sidebar -->
+        <aside class="sidebar">
 
-        <p>View a summary of your financial transactions.</p>
-
-        <div class="dashboard-cards">
-
-            <div class="card">
-                <h3>Total Spending</h3>
-                <p id="reportTotal">₹0</p>
+            <div class="logo-section">
+                <div class="logo-icon">₹</div>
+                <h1>FinQuery-V2</h1>
+                <p>Financial Management</p>
             </div>
 
-            <div class="card">
-                <h3>Total Transactions</h3>
-                <p id="reportTransactions">0</p>
+            <div class="sidebar-menu">
+
+                <p class="menu-title">MAIN MENU</p>
+
+                <a href="index.html" class="menu-item">
+                    <span>⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="transactions.html" class="menu-item">
+                    <span>▤</span>
+                    Transactions
+                </a>
+
+                <a href="analysis.html" class="menu-item">
+                    <span>◔</span>
+                    Analysis
+                </a>
+
+                <a href="reports.html" class="menu-item active">
+                    <span>▥</span>
+                    Reports
+                </a>
+
+                <a href="add-transaction.html" class="menu-item">
+                    <span>＋</span>
+                    Add Transaction
+                </a>
+
             </div>
 
-            <div class="card">
-                <h3>Highest Expense</h3>
-                <p id="reportHighest">₹0</p>
+            <div class="budget-box">
+
+                <small>MONTHLY BUDGET</small>
+
+                <h3>₹9,699</h3>
+
+                <p>of ₹15,000</p>
+
+                <div class="budget-bar">
+                    <div class="budget-progress"></div>
+                </div>
+
+                <small>65% used this month</small>
+
             </div>
 
-            <div class="card">
-                <h3>Average Expense</h3>
-                <p id="reportAverage">₹0</p>
+            <div class="insight-box">
+
+                <small>✧ AI INSIGHT</small>
+
+                <p>Food spending is up 18% this month.</p>
+
             </div>
 
-        </div>
+            <a href="login.html" class="logout">
+                <span>↪</span>
+                Logout
+            </a>
 
-        <h2>Transaction Report</h2>
-        
-        <button id="exportReport">Export CSV</button>
+        </aside>
 
-        <table class="transaction-table">
 
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
+        <!-- Main Content -->
+        <main class="main-content">
 
-            <tbody id="reportTransactionsList">
-            </tbody>
+            <div class="top-header">
 
-        </table>
+                <div>
+
+                    <h2>Financial Reports</h2>
+
+                    <p>
+                        View a summary of your financial transactions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Report Summary -->
+            <section class="recent-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>Financial Summary</h3>
+
+                        <p>
+                            Overview of your financial activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-cards">
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">₹</div>
+
+                        <div>
+
+                            <p>Total Spending</p>
+
+                            <h3 id="reportTotal">₹0</h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">#</div>
+
+                        <div>
+
+                            <p>Total Transactions</p>
+
+                            <h3 id="reportTransactions">0</h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">↑</div>
+
+                        <div>
+
+                            <p>Highest Expense</p>
+
+                            <h3 id="reportHighest">₹0</h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">≈</div>
+
+                        <div>
+
+                            <p>Average Expense</p>
+
+                            <h3 id="reportAverage">₹0</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Transaction Report -->
+            <section class="recent-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>Transaction Report</h3>
+
+                        <p>
+                            Review your financial transactions.
+                        </p>
+
+                    </div>
+
+                    <button id="exportReport">
+                        Export CSV
+                    </button>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table class="transaction-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportTransactionsList">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <div class="back-dashboard">
+
+                <a href="index.html">
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </main>
 
     </div>
+
 
     <script src="script.js"></script>
 

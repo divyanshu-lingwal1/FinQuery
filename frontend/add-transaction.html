@@ -1,49 +1,215 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FinQuery-V2 - Add Transaction</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="login-container">
+    <div class="dashboard-container">
 
-        <h1>FinQuery-V2</h1>
+        <!-- Sidebar -->
+        <aside class="sidebar">
 
-        <h2>Add Transaction</h2>
+            <div class="logo-section">
 
-        <form id="transactionForm">
+                <div class="logo-icon">₹</div>
 
-            <label>Date:</label>
-            <br>
-            <input type="date" id="date">
-            <br><br>
+                <h1>FinQuery-V2</h1>
 
-            <label>Description:</label>
-            <br>
-            <input type="text" id="description" placeholder="Enter description">
-            <br><br>
+                <p>Financial Management</p>
 
-            <label>Category:</label>
-            <br>
-            <input type="text" id="category" placeholder="Enter category">
-            <br><br>
+            </div>
 
-            <label>Amount:</label>
-            <br>
-            <input type="number" id="amount" placeholder="Enter amount">
-            <br><br>
 
-            <button type="submit">Add Transaction</button>
+            <div class="sidebar-menu">
 
-        </form>
+                <p class="menu-title">MAIN MENU</p>
 
-        <p><a href="index.html">Back to Dashboard</a></p>
+                <a href="index.html" class="menu-item">
+                    <span>⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="transactions.html" class="menu-item">
+                    <span>▤</span>
+                    Transactions
+                </a>
+
+                <a href="analysis.html" class="menu-item">
+                    <span>◔</span>
+                    Analysis
+                </a>
+
+                <a href="reports.html" class="menu-item">
+                    <span>▥</span>
+                    Reports
+                </a>
+
+                <a href="add-transaction.html" class="menu-item active">
+                    <span>＋</span>
+                    Add Transaction
+                </a>
+
+            </div>
+
+
+            <div class="budget-box">
+
+                <small>MONTHLY BUDGET</small>
+
+                <h3>₹9,699</h3>
+
+                <p>of ₹15,000</p>
+
+                <div class="budget-bar">
+                    <div class="budget-progress"></div>
+                </div>
+
+                <small>65% used this month</small>
+
+            </div>
+
+
+            <div class="insight-box">
+
+                <small>✧ AI INSIGHT</small>
+
+                <p>Food spending is up 18% this month.</p>
+
+            </div>
+
+
+            <a href="login.html" class="logout">
+
+                <span>↪</span>
+                Logout
+
+            </a>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="top-header">
+
+                <div>
+                    <h2>Add Transaction</h2>
+
+                    <p>
+                        Add a new financial transaction to your account.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Add Transaction Section -->
+            <section class="recent-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h3>Transaction Details</h3>
+
+                        <p>
+                            Enter the details of your expense or income.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="transactionForm" class="transaction-form">
+
+                    <div class="form-group">
+
+                        <label for="date">Date</label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="description">Description</label>
+
+                        <input
+                            type="text"
+                            id="description"
+                            placeholder="Enter description"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">Category</label>
+
+                        <input
+                            type="text"
+                            id="category"
+                            placeholder="Enter category"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="amount">Amount</label>
+
+                        <input
+                            type="number"
+                            id="amount"
+                            placeholder="Enter amount"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button type="submit" class="transaction-submit">
+                        Add Transaction
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <div class="back-dashboard">
+
+                <a href="index.html">
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </main>
 
     </div>
+
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

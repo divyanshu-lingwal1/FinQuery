@@ -24,32 +24,22 @@
         <aside class="sidebar">
 
             <div class="logo-section">
-
-                <div class="logo-icon">↗</div>
-
+                <div class="logo-icon">₹</div>
                 <h1>FinQuery-V2</h1>
-
-                <p>
-                    AI-Powered Financial Data Analysis System
-                </p>
-
+                <p>Financial Management</p>
             </div>
 
+            <div class="sidebar-menu">
 
-            <div class="menu-title">
-                MAIN MENU
-            </div>
-
-
-            <nav class="sidebar-menu">
+                <p class="menu-title">MAIN MENU</p>
 
                 <a href="index.html" class="menu-item active">
-                    <span>▦</span>
+                    <span>⌂</span>
                     Dashboard
                 </a>
 
                 <a href="transactions.html" class="menu-item">
-                    <span>▣</span>
+                    <span>▤</span>
                     Transactions
                 </a>
 
@@ -59,66 +49,45 @@
                 </a>
 
                 <a href="reports.html" class="menu-item">
-                    <span>▤</span>
+                    <span>▥</span>
                     Reports
                 </a>
 
                 <a href="add-transaction.html" class="menu-item">
-                    <span>⊕</span>
+                    <span>＋</span>
                     Add Transaction
                 </a>
 
-            </nav>
+            </div>
 
+            <div class="budget-box">
 
-            <div class="sidebar-bottom">
+                <small>MONTHLY BUDGET</small>
 
+                <h3>₹9,699</h3>
 
-                <!-- Monthly Budget -->
+                <p>of ₹15,000</p>
 
-                <div class="budget-box">
-
-                    <small>MONTHLY BUDGET</small>
-
-                    <h3>₹9,699</h3>
-
-                    <p>of ₹15,000</p>
-
-                    <div class="budget-bar">
-
-                        <div class="budget-progress"></div>
-
-                    </div>
-
-                    <small>65% used this month</small>
-
+                <div class="budget-bar">
+                    <div class="budget-progress"></div>
                 </div>
 
-
-                <!-- AI Insight -->
-
-                <div class="insight-box">
-
-                    <small>✧ AI INSIGHT</small>
-
-                    <p>
-                        Food spending is up 18% this month.
-                    </p>
-
-                </div>
-
-
-                <!-- Logout -->
-
-                <a href="login.html" class="logout">
-
-                    <span>↪</span>
-
-                    Logout
-
-                </a>
+                <small>65% used this month</small>
 
             </div>
+
+            <div class="insight-box">
+
+                <small>✧ AI INSIGHT</small>
+
+                <p>Food spending is up 18% this month.</p>
+
+            </div>
+
+            <a href="login.html" class="logout">
+                <span>↪</span>
+                Logout
+            </a>
 
         </aside>
 
@@ -148,14 +117,11 @@
 
                 <div class="user-section">
 
-                    <span>👤</span>
+                    <div class="user-avatar">U</div>
 
-                    <div>
-
+                    <div class="user-info">
                         <strong>User</strong>
-
                         <small>Personal Account</small>
-
                     </div>
 
                 </div>
@@ -758,7 +724,7 @@
                         <td>${transaction.date}</td>
                         <td>${transaction.description}</td>
                         <td>${transaction.category}</td>
-                        <td>₹${transaction.amount}</td>
+                        <td>₹${Number(transaction.amount).toLocaleString("en-IN")}</td>
                     `;
 
                     recentTransactionsList.appendChild(row);

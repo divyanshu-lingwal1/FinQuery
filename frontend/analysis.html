@@ -5,47 +5,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FinQuery - Analysis</title>
+    <title>FinQuery-V2 - Analysis</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="dashboard-container">
 
-        <h1>Financial Analysis</h1>
+        <!-- Sidebar -->
+        <aside class="sidebar">
 
-        <p>Analyze your spending and understand your financial habits.</p>
+            <div class="logo-section">
+                <div class="logo-icon">₹</div>
 
-        <div class="dashboard-cards">
+                <h1>FinQuery-V2</h1>
 
-            <div class="card">
-                <h3>Total Spending</h3>
-                <p id="analysisTotal">₹0</p>
+                <p>Financial Management</p>
             </div>
 
-            <div class="card">
-                <h3>Highest Expense</h3>
-                <p id="analysisHighest">₹0</p>
+            <div class="sidebar-menu">
+
+                <p class="menu-title">MAIN MENU</p>
+
+                <a href="index.html" class="menu-item">
+                    <span>⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="transactions.html" class="menu-item">
+                    <span>▤</span>
+                    Transactions
+                </a>
+
+                <a href="analysis.html" class="menu-item active">
+                    <span>◔</span>
+                    Analysis
+                </a>
+
+                <a href="reports.html" class="menu-item">
+                    <span>▥</span>
+                    Reports
+                </a>
+
+                <a href="add-transaction.html" class="menu-item">
+                    <span>＋</span>
+                    Add Transaction
+                </a>
+
             </div>
 
-            <div class="card">
-                <h3>Average Expense</h3>
-                <p id="analysisAverage">₹0</p>
+            <div class="budget-box">
+
+                <small>MONTHLY BUDGET</small>
+
+                <h3>₹9,699</h3>
+
+                <p>of ₹15,000</p>
+
+                <div class="budget-bar">
+                    <div class="budget-progress"></div>
+                </div>
+
+                <small>65% used this month</small>
+
             </div>
 
-        </div>
+            <div class="insight-box">
+
+                <small>✧ AI INSIGHT</small>
+
+                <p>Food spending is up 18% this month.</p>
+
+            </div>
+
+            <a href="login.html" class="logout">
+                <span>↪</span>
+                Logout
+            </a>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="top-header">
+
+                <div>
+
+                    <h2>Financial Analysis</h2>
+
+                    <p>
+                        Analyze your spending and understand your financial habits.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Analysis Summary -->
+            <section class="recent-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h3>Financial Summary</h3>
+
+                        <p>Overview of your current spending.</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-cards">
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">₹</div>
+
+                        <div>
+
+                            <p>Total Spending</p>
+
+                            <h3 id="analysisTotal">₹0</h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">↑</div>
+
+                        <div>
+
+                            <p>Highest Expense</p>
+
+                            <h3 id="analysisHighest">₹0</h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">≈</div>
+
+                        <div>
+
+                            <p>Average Expense</p>
+
+                            <h3 id="analysisAverage">₹0</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Category Analysis -->
+            <div class="analysis-layout">
+
+                <section class="recent-section">
+                    <div class="section-header">
+                        <div>
+                            <h3>Category-wise Spending</h3>
+                            <p>See how your expenses are distributed across categories.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-cards" id="categoryAnalysis"></div>
+                </section>
+
+                <section class="recent-section">
+                    <div class="section-header">
+                        <div>
+                            <h3>Spending Chart</h3>
+                            <p>Visual representation of your spending by category.</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="spendingChart"></canvas>
+                    </div>
+                </section>
+
+            </div>
+
+
+            <div class="back-dashboard">
+
+                <a href="index.html">← Back to Dashboard</a>
+
+            </div>
+
+        </main>
 
     </div>
 
-    <h2>Category-wise Spending</h2>
-
-    <div class="dashboard-cards" id="categoryAnalysis"></div>
-
-    <h2>Spending Chart</h2>
-
-    <canvas id="spendingChart"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

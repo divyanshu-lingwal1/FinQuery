@@ -1,3 +1,17 @@
+/* ================================
+   CURRENCY FORMATTER
+================================ */
+
+function formatCurrency(amount) {
+    return "₹" + Number(amount).toLocaleString("en-IN", {
+        maximumFractionDigits: 2
+    });
+}
+
+/* ================================
+   SEARCH - TRANSACTIONS PAGE
+================================ */
+
 const searchInput = document.getElementById("searchInput");
 
 if (searchInput) {
@@ -22,12 +36,19 @@ if (searchInput) {
     });
 
 }
-/* Total Spending Calculation */
+
+
+/* ================================
+   DASHBOARD - TOTAL SPENDING
+================================ */
+
 const totalSpending = document.getElementById("totalSpending");
 
 if (totalSpending) {
 
-    fetch("http://127.0.0.1:5000/api/transactions/monthly")
+    fetch("http://127.0.0.1:5000/api/transactions/monthly", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -37,7 +58,7 @@ if (totalSpending) {
                 total += item.total_spending;
             });
 
-            totalSpending.textContent = "₹" + total;
+            totalSpending.textContent = formatCurrency(total);
 
         })
         .catch(error => {
@@ -46,12 +67,18 @@ if (totalSpending) {
 
 }
 
-/* Total Transactions Calculation */
+
+/* ================================
+   DASHBOARD - TOTAL TRANSACTIONS
+================================ */
+
 const totalTransactions = document.getElementById("totalTransactions");
 
 if (totalTransactions) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -64,12 +91,18 @@ if (totalTransactions) {
 
 }
 
-/* Highest Expense Calculation */
+
+/* ================================
+   DASHBOARD - HIGHEST EXPENSE
+================================ */
+
 const highestExpense = document.getElementById("highestExpense");
 
 if (highestExpense) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -85,7 +118,7 @@ if (highestExpense) {
 
             });
 
-            highestExpense.textContent = "₹" + highest;
+            highestExpense.textContent = formatCurrency(highest);
 
         })
         .catch(error => {
@@ -94,12 +127,18 @@ if (highestExpense) {
 
 }
 
-/* Average Expense Calculation */
+
+/* ================================
+   DASHBOARD - AVERAGE EXPENSE
+================================ */
+
 const averageExpense = document.getElementById("averageExpense");
 
 if (averageExpense) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -113,7 +152,7 @@ if (averageExpense) {
 
             const average = total / transactions.length;
 
-            averageExpense.textContent = "₹" + average.toFixed(2);
+            averageExpense.textContent = formatCurrency(average);
 
         })
         .catch(error => {
@@ -122,12 +161,18 @@ if (averageExpense) {
 
 }
 
-/* Recent Transactions Display */
+
+/* ================================
+   DASHBOARD - RECENT TRANSACTIONS
+================================ */
+
 const recentTransactions = document.getElementById("recentTransactions");
 
 if (recentTransactions) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -141,7 +186,7 @@ if (recentTransactions) {
                     <td>${transaction.date}</td>
                     <td>${transaction.description}</td>
                     <td>${transaction.category}</td>
-                    <td>₹${transaction.amount}</td>
+                    <td>${formatCurrency(transaction.amount)}</td>
                 `;
 
                 recentTransactions.appendChild(row);
@@ -155,7 +200,11 @@ if (recentTransactions) {
 
 }
 
-/* Add Transaction Form Submission */
+
+/* ================================
+   ADD TRANSACTION
+================================ */
+
 const transactionForm = document.getElementById("transactionForm");
 
 if (transactionForm) {
@@ -184,8 +233,11 @@ if (transactionForm) {
         })
         .then(response => response.json())
         .then(data => {
+
             console.log(data);
+
             window.location.href = "index.html";
+
         })
         .catch(error => {
             console.log("Error:", error);
@@ -195,7 +247,11 @@ if (transactionForm) {
 
 }
 
-/* Transactions List*/
+
+/* ================================
+   TRANSACTIONS PAGE
+================================ */
+
 const transactionsList = document.getElementById("transactionsList");
 
 if (transactionsList) {
@@ -216,7 +272,7 @@ if (transactionsList) {
                     <td>${transaction.date}</td>
                     <td>${transaction.description}</td>
                     <td>${transaction.category}</td>
-                    <td>₹${transaction.amount}</td>
+                    <td>${formatCurrency(transaction.amount)}</td>
                 `;
 
                 transactionsList.appendChild(row);
@@ -230,8 +286,10 @@ if (transactionsList) {
 
 }
 
-/* Analysis Page - Monthly Spending Chart */
-/* Analysis Page */
+
+/* ================================
+   ANALYSIS PAGE - SUMMARY
+================================ */
 
 const analysisTotal = document.getElementById("analysisTotal");
 const analysisHighest = document.getElementById("analysisHighest");
@@ -239,7 +297,9 @@ const analysisAverage = document.getElementById("analysisAverage");
 
 if (analysisTotal || analysisHighest || analysisAverage) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -260,9 +320,9 @@ if (analysisTotal || analysisHighest || analysisAverage) {
 
             const average = total / transactions.length;
 
-            analysisTotal.textContent = "₹" + total;
-            analysisHighest.textContent = "₹" + highest;
-            analysisAverage.textContent = "₹" + average.toFixed(2);
+            if (analysisTotal) analysisTotal.textContent = formatCurrency(total);
+            if (analysisHighest) analysisHighest.textContent = formatCurrency(highest);
+            if (analysisAverage) analysisAverage.textContent = formatCurrency(average);
 
         })
         .catch(error => {
@@ -271,14 +331,18 @@ if (analysisTotal || analysisHighest || analysisAverage) {
 
 }
 
-/* Category-wise Spending Analysis */
-/* Category-wise Analysis */
+
+/* ================================
+   ANALYSIS PAGE - CATEGORY SPENDING
+================================ */
 
 const categoryAnalysis = document.getElementById("categoryAnalysis");
 
 if (categoryAnalysis) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -306,10 +370,11 @@ if (categoryAnalysis) {
 
                 item.innerHTML = `
                     <h3>${category}</h3>
-                    <p>₹${categories[category]}</p>
+                    <p>${formatCurrency(categories[category])}</p>
                 `;
 
                 categoryAnalysis.appendChild(item);
+
             }
 
         })
@@ -319,14 +384,18 @@ if (categoryAnalysis) {
 
 }
 
-/* Spending Chart */
-/* Spending Chart */
+
+/* ================================
+   ANALYSIS PAGE - SPENDING CHART
+================================ */
 
 const spendingChart = document.getElementById("spendingChart");
 
 if (spendingChart) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -347,16 +416,20 @@ if (spendingChart) {
             });
 
             new Chart(spendingChart, {
+
                 type: "bar",
 
                 data: {
+
                     labels: Object.keys(categories),
 
                     datasets: [{
                         label: "Spending",
                         data: Object.values(categories)
                     }]
+
                 }
+
             });
 
         })
@@ -366,7 +439,10 @@ if (spendingChart) {
 
 }
 
-/* Reports Page */
+
+/* ================================
+   REPORTS PAGE
+================================ */
 
 const reportTotal = document.getElementById("reportTotal");
 const reportTransactions = document.getElementById("reportTransactions");
@@ -376,7 +452,9 @@ const reportTransactionsList = document.getElementById("reportTransactionsList")
 
 if (reportTotal || reportTransactionsList) {
 
-    fetch("http://127.0.0.1:5000/api/transactions")
+    fetch("http://127.0.0.1:5000/api/transactions", {
+        credentials: "include"
+    })
         .then(response => response.json())
         .then(data => {
 
@@ -393,25 +471,29 @@ if (reportTotal || reportTransactionsList) {
                     highest = transaction.amount;
                 }
 
-                const row = document.createElement("tr");
+                if (reportTransactionsList) {
 
-                row.innerHTML = `
-                    <td>${transaction.date}</td>
-                    <td>${transaction.description}</td>
-                    <td>${transaction.category}</td>
-                    <td>₹${transaction.amount}</td>
-                `;
+                    const row = document.createElement("tr");
 
-                reportTransactionsList.appendChild(row);
+                    row.innerHTML = `
+                        <td>${transaction.date}</td>
+                        <td>${transaction.description}</td>
+                        <td>${transaction.category}</td>
+                        <td>${formatCurrency(transaction.amount)}</td>
+                    `;
+
+                    reportTransactionsList.appendChild(row);
+
+                }
 
             });
 
             const average = total / transactions.length;
 
-            reportTotal.textContent = "₹" + total;
-            reportTransactions.textContent = transactions.length;
-            reportHighest.textContent = "₹" + highest;
-            reportAverage.textContent = "₹" + average.toFixed(2);
+            if (reportTotal) reportTotal.textContent = formatCurrency(total);
+            if (reportTransactions) reportTransactions.textContent = transactions.length;
+            if (reportHighest) reportHighest.textContent = formatCurrency(highest);
+            if (reportAverage) reportAverage.textContent = formatCurrency(average);
 
         })
         .catch(error => {
@@ -420,7 +502,10 @@ if (reportTotal || reportTransactionsList) {
 
 }
 
-/* Export Report as CSV */
+
+/* ================================
+   REPORTS PAGE - EXPORT CSV
+================================ */
 
 const exportReport = document.getElementById("exportReport");
 
@@ -428,7 +513,9 @@ if (exportReport) {
 
     exportReport.addEventListener("click", function () {
 
-        fetch("http://127.0.0.1:5000/api/transactions")
+        fetch("http://127.0.0.1:5000/api/transactions", {
+            credentials: "include"
+        })
             .then(response => response.json())
             .then(data => {
 
@@ -438,7 +525,7 @@ if (exportReport) {
 
                 transactions.forEach(transaction => {
 
-                    csv += `"${transaction.date}","${transaction.description}","${transaction.category}",${transaction.amount}\n`;
+                    csv += `"${transaction.date}","${transaction.description}","${transaction.category}","${formatCurrency(transaction.amount)}"\n`;
 
                 });
 
@@ -466,85 +553,142 @@ if (exportReport) {
 
 }
 
+
+/* ================================
+   REGISTER
+================================ */
+
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
+
     registerForm.addEventListener("submit", async function(event) {
+
         event.preventDefault();
 
         const name = document.getElementById("name").value;
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        const response = await fetch("http://127.0.0.1:5000/api/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                password: password
-            })
-        });
+        const response = await fetch(
+            "http://127.0.0.1:5000/api/register",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                })
+            }
+        );
 
         const result = await response.json();
 
         alert(result.message);
+
     });
+
 }
+
+
+/* ================================
+   LOGIN
+================================ */
 
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
+
     loginForm.addEventListener("submit", async function(event) {
+
         event.preventDefault();
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        const response = await fetch("http://127.0.0.1:5000/api/login", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        });
+        const response = await fetch(
+            "http://127.0.0.1:5000/api/login",
+            {
+                method: "POST",
+
+                credentials: "include",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }
+        );
 
         const result = await response.json();
 
         if (result.success) {
+
             window.location.href = "analysis.html";
+
         } else {
+
             alert(result.message);
+
         }
+
     });
+
 }
+
+
+/* ================================
+   PAGE PROTECTION
+================================ */
 
 const currentPage = window.location.pathname;
 
 if (
     currentPage.includes("analysis.html") ||
     currentPage.includes("transactions.html") ||
-    currentPage.includes("add-transaction.html")
+    currentPage.includes("add-transaction.html") ||
+    currentPage.includes("reports.html")
 ) {
 
     fetch("http://127.0.0.1:5000/api/me", {
         credentials: "include"
     })
-    .then(response => {
-        if (!response.ok) {
+        .then(response => {
+
+            if (!response.ok) {
+
+                window.location.href = "login.html";
+
+            }
+
+            return response.json();
+
+        })
+        .then(result => {
+
+            if (!result.logged_in) {
+
+                window.location.href = "login.html";
+
+            }
+
+        })
+        .catch(error => {
+
+            console.log("Session check error:", error);
+
             window.location.href = "login.html";
-        }
-        return response.json();
-    })
-    .then(result => {
-        if (!result.logged_in) {
-            window.location.href = "login.html";
-        }
-    });
+
+        });
+
 }
+
