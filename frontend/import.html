@@ -500,6 +500,11 @@
                 importUrl =
                     "http://127.0.0.1:5000/api/import/pdf";
 
+            } else if (fileExtension === "docx") {
+
+                importUrl =
+                    "http://127.0.0.1:5000/api/import/docx";
+
             } else {
 
                 importStatus.innerHTML =
@@ -544,6 +549,13 @@
                             "<pre>" + result.text + "</pre>" +
                             "</div>";
                     }
+
+                    } else if (fileExtension === "docx") {
+
+                        importStatus.innerHTML =
+                            "<strong class=\"import-ready\">DOCX import successful</strong><br>" +
+                            result.count +
+                            " transactions imported successfully.";
 
                 } else {
 

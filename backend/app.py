@@ -4,6 +4,7 @@ from datetime import date
 from flask import Flask, request, session
 from flask_cors import CORS
 from importers.pdf_importer import read_pdf_file, parse_pdf_transactions
+from importers.docx_importer import read_docx_file, parse_docx_transactions
 from importers.csv_importer import read_csv_file
 from importers.ocr_importer import read_image_file
 from importers.qr_importer import read_qr_code
@@ -174,6 +175,67 @@ def import_pdf():
         }
 
     except Exception as error:
+        return {
+            "success": False,
+            "message": str(error)
+        }, 400
+
+@app.route("/api/import/docx", methods=["POST"])
+def import_docx():
+
+    if "user_id" not in session:
+        return {
+            "success": False,
+            "message": "Please login first"
+        }, 401
+
+    if "file" not in request.files:
+        return {
+            "success": False,
+            "message": "No file uploaded"
+        }, 400
+
+    file = request.files["file"]
+
+    if file.filename == "":
+        return {
+            "success": False,
+            "message": "No file selected"
+        }, 400
+
+    if not file.filename.lower().endswith(".docx"):
+        return {
+            "success": False,
+            "message": "Only DOCX files are allowed"
+        }, 400
+
+    file_path = "temp_import.docx"
+    file.save(file_path)
+
+    try:
+
+        text = read_docx_file(file_path)
+
+        transactions = parse_docx_transactions(text)
+
+        import_transactions(
+            transactions,
+            session["user_id"]
+        )
+
+        print("\n========== DOCX TRANSACTIONS ==========")
+        print(transactions)
+        print("========== END DOCX TRANSACTIONS ==========\n")
+
+        return {
+            "success": True,
+            "message": "DOCX transactions imported successfully!",
+            "count": len(transactions),
+            "transactions": transactions
+        }
+
+    except Exception as error:
+
         return {
             "success": False,
             "message": str(error)

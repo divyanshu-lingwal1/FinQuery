@@ -22,3 +22,32 @@ def read_docx_file(file_path):
             text += " ".join(row_data) + "\n"
 
     return text
+
+import re
+
+
+def parse_docx_transactions(text):
+    transactions = []
+
+    pattern = re.compile(
+        r"Date:\s*(.*?)\s*"
+        r"Description:\s*(.*?)\s*"
+        r"Category:\s*(.*?)\s*"
+        r"Amount:\s*([\d,]+(?:\.\d+)?)",
+        re.IGNORECASE
+    )
+
+    matches = pattern.findall(text)
+
+    for match in matches:
+
+        transaction = {
+            "date": match[0].strip(),
+            "description": match[1].strip(),
+            "category": match[2].strip(),
+            "amount": match[3].replace(",", "").strip()
+        }
+
+        transactions.append(transaction)
+
+    return transactions
