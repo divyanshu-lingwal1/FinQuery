@@ -2761,3 +2761,703 @@ body {
 .user-section:hover {
     background: #f0f6f3;
 }
+
+/* =========================================
+   IMPORT PAGE
+   ========================================= */
+
+.import-card {
+    margin-top: 20px;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #e2ebe6;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(18, 55, 42, 0.05);
+    text-align: center;
+    max-width: 700px;
+}
+
+.import-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5ee;
+    color: #2e7d5b;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.import-card h3 {
+    margin: 0 0 8px;
+    color: #12372a;
+    font-size: 20px;
+}
+
+.import-card p {
+    margin: 0 0 20px;
+    color: #74827c;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.import-card input[type="file"] {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 16px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #d7e3dc;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #4f5f57;
+    font-size: 13px;
+}
+
+.import-button {
+    padding: 11px 20px;
+    background: #2e7d5b;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.import-button:hover {
+    background: #1b4d3a;
+}
+
+@media (max-width: 600px) {
+
+    .import-card {
+        padding: 22px 18px;
+    }
+
+    .import-card input[type="file"] {
+        font-size: 12px;
+    }
+
+}
+
+#selectedFileName {
+    margin: 12px 0 18px;
+    color: #2e7d5b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.import-drop-area {
+    margin-bottom: 20px;
+    padding: 22px;
+    border: 1px dashed #b8d4c7;
+    border-radius: 10px;
+    background: #f8fbf9;
+    text-align: center;
+}
+
+.import-drop-area span {
+    display: block;
+    margin-bottom: 5px;
+    color: #2e7d5b;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.import-drop-area small {
+    color: #74827c;
+    font-size: 12px;
+}
+
+.import-card.drag-active {
+    border-color: #2e7d5b;
+    background: #f0f7f3;
+}
+
+.import-card.drag-active {
+    border: 2px dashed #2e7d5b;
+    background-color: #f1f8f4;
+    transform: scale(1.01);
+}
+
+.import-card {
+    transition: background-color 0.2s ease, border 0.2s ease, transform 0.2s ease;
+}
+
+.import-card.drag-active .import-drop-area span {
+    color: #2e7d5b;
+    font-weight: 700;
+}
+
+.import-card.drag-active .import-drop-area small {
+    color: #5f7469;
+}
+
+.import-card.drag-active .import-drop-area {
+    border-color: #2e7d5b;
+    background-color: #f8fcf9;
+}
+
+#selectedFileName {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: #f3f8f5;
+    color: #2e7d5b;
+    font-size: 13px;
+    text-align: center;
+}
+
+#selectedFileName:empty {
+    display: none;
+}
+
+#selectedFileName {
+    font-weight: 600;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+/* =========================================
+   IMPORT PAGE - FINAL UI POLISH
+   ========================================= */
+
+.import-card {
+    text-align: center;
+    position: relative;
+    transition:
+        background-color 0.2s ease,
+        border 0.2s ease,
+        transform 0.2s ease;
+}
+
+.import-drop-area {
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.import-drop-area:hover {
+    border-color: #a9c5b6;
+    background-color: #fafdfb;
+}
+
+.import-card.drag-active {
+    border: 2px dashed #2e7d5b;
+    background-color: #f1f8f4;
+    transform: scale(1.01);
+}
+
+.import-card.drag-active .import-drop-area {
+    border-color: #2e7d5b;
+    background-color: #f8fcf9;
+}
+
+.import-card.drag-active .import-drop-area span {
+    color: #2e7d5b;
+    font-weight: 700;
+}
+
+.import-card.drag-active .import-drop-area small {
+    color: #5f7469;
+}
+
+#selectedFileName {
+    margin-top: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: #f3f8f5;
+    color: #2e7d5b;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    word-break: break-word;
+}
+
+#selectedFileName:empty {
+    display: none;
+}
+
+.import-button {
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.import-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(18, 55, 42, 0.10);
+}
+
+.import-button:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   SELECTED FILE STATE
+   ========================================= */
+
+.selected-file-box {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid #d8e7df;
+    border-radius: 10px;
+    background-color: #f7fbf8;
+    text-align: left;
+}
+
+.selected-file-box.show {
+    display: flex;
+}
+
+.selected-file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.selected-file-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #e2f2e9;
+    color: #2e7d5b;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.selected-file-info strong {
+    display: block;
+    color: #254d3b;
+    font-size: 13px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.selected-file-info small {
+    display: block;
+    margin-top: 3px;
+    color: #7a8981;
+    font-size: 12px;
+}
+
+.remove-file-button {
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    color: #b24a3a;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.remove-file-button:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+
+    .selected-file-box {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .remove-file-button {
+        margin-left: 40px;
+    }
+}
+
+/* =========================================
+   IMPORT ACTION BUTTONS
+   ========================================= */
+
+.import-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.import-submit-button {
+    display: none;
+    padding: 11px 22px;
+    border: none;
+    border-radius: 8px;
+    background-color: #174f39;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.import-submit-button.show {
+    display: inline-block;
+}
+
+.import-submit-button:hover {
+    background-color: #123f2e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(18, 55, 42, 0.12);
+}
+
+.import-submit-button:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+
+    .import-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .import-actions button {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   IMPORT FILE REQUIREMENTS
+   ========================================= */
+
+.import-file-limit {
+    display: block;
+    margin-top: -6px;
+    margin-bottom: 16px;
+    color: #7a8981;
+    font-size: 12px;
+}
+
+/* =========================================
+   IMPORT - HOW IT WORKS
+   ========================================= */
+
+.import-steps {
+    margin-top: 22px;
+    padding: 22px 24px;
+    border: 1px solid #e1ebe5;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.import-steps > h3 {
+    margin: 0 0 18px;
+    color: #254d3b;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.import-step-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.import-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.import-step > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #e2f2e9;
+    color: #2e7d5b;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.import-step strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #31443b;
+    font-size: 13px;
+}
+
+.import-step small {
+    display: block;
+    color: #7a8981;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+
+    .import-step-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   IMPORT - STATUS MESSAGE
+   ========================================= */
+
+.import-status {
+    display: none;
+    margin-top: 18px;
+    padding: 12px 16px;
+    border: 1px solid #dce9e1;
+    border-radius: 8px;
+    background-color: #f4faf6;
+    color: #2e6b4f;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.import-status.show {
+    display: block;
+}
+
+/* =========================================
+   IMPORT - PROCESSING INDICATOR
+   ========================================= */
+
+.import-status strong {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.import-status strong::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #2e7d5b;
+    animation: importPulse 1s ease-in-out infinite;
+}
+
+@keyframes importPulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+}
+
+/* =========================================
+   IMPORT - READY STATE
+   ========================================= */
+
+.import-status .import-ready::after {
+    display: none;
+}
+
+/* =========================================
+   IMPORT - READY STATUS
+   ========================================= */
+
+.import-status .import-ready {
+    color: #2e7d5b;
+}
+
+.import-status .import-ready::before {
+    content: "✓";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+    border-radius: 50%;
+    background-color: #e2f2e9;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* =========================================
+   IMPORT - BUTTON PROCESSING STATE
+   ========================================= */
+
+.import-submit-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.import-submit-button:disabled:hover {
+    transform: none;
+}
+
+/* =========================================
+   IMPORT - ACTION BUTTONS POLISH
+   ========================================= */
+
+.import-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.import-button,
+.import-submit-button {
+    min-width: 120px;
+    padding: 10px 18px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.import-button {
+    border: 1px solid #d5e3db;
+    background-color: #ffffff;
+    color: #2e6b4f;
+}
+
+.import-button:hover {
+    background-color: #f1f8f4;
+    border-color: #b9d4c4;
+}
+
+.import-submit-button {
+    border: 1px solid #2e7d5b;
+    background-color: #2e7d5b;
+    color: #ffffff;
+}
+
+.import-submit-button:hover:not(:disabled) {
+    background-color: #256749;
+    border-color: #256749;
+}
+
+.import-submit-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+
+    .import-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .import-button,
+    .import-submit-button {
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   IMPORT - RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .import-card {
+        padding: 28px 20px;
+    }
+
+    .import-step-list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .import-card {
+        padding: 24px 16px;
+    }
+
+    .import-drop-area {
+        min-height: 150px;
+    }
+
+    .import-card h3 {
+        font-size: 17px;
+    }
+
+    .import-card p {
+        font-size: 12px;
+    }
+
+    .import-file-limit {
+        font-size: 11px;
+    }
+
+    .selected-file-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .remove-file-button {
+        width: 100%;
+    }
+
+    .import-steps {
+        padding: 20px 18px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .import-drop-area {
+        min-height: 130px;
+    }
+
+    .import-drop-area span {
+        font-size: 14px;
+    }
+
+    .import-drop-area small {
+        font-size: 11px;
+    }
+
+    .import-icon {
+        font-size: 28px;
+    }
+
+    .import-steps > h3 {
+        font-size: 14px;
+    }
+
+}
