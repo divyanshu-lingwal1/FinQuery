@@ -1,3 +1,6 @@
+import os
+import tempfile
+
 from services.import_preview import create_preview
 from services.import_history import save_import_history
 from datetime import date
@@ -109,7 +112,15 @@ def import_csv():
     if not file.filename.lower().endswith(".csv"):
         return {"success": False, "message": "Only CSV files are allowed"}, 400
 
-    file_path = "temp_import.csv"
+    temp_file = tempfile.NamedTemporaryFile(
+        delete=False,
+        suffix=".csv"
+    )
+
+    file_path = temp_file.name
+
+    temp_file.close()
+
     file.save(file_path)
 
     try:
@@ -127,10 +138,16 @@ def import_csv():
         }
 
     except ValueError as error:
+
         return {
             "success": False,
             "message": str(error)
         }, 400
+
+    finally:
+
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
 @app.route("/api/import/pdf", methods=["POST"])
 def import_pdf():

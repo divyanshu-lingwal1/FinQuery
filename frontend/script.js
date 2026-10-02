@@ -591,6 +591,8 @@ if (registerForm) {
 
         alert(result.message);
 
+        window.location.href = "login.html";
+
     });
 
 }
@@ -633,7 +635,7 @@ if (loginForm) {
 
         if (result.success) {
 
-            window.location.href = "analysis.html";
+            window.location.href = "index.html";
 
         } else {
 
